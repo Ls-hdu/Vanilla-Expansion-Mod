@@ -98,7 +98,6 @@ public class VEPlanets {
             allowLaunchLoadout = true;
             landCloudColor = Color.valueOf("87CEEB").a(0.5f);
         }};
-        neutronStar.children.add(proxima);
         proxima.solarSystem = neutronStar;
     }
 }

@@ -17,7 +17,7 @@ public abstract class ParticleMesh implements GenericMesh{
     protected float time;
     protected float tiltDeg;
     protected float wobbleAmp = 5f;
-    protected float wobbleSpeed = 16f;
+    protected float wobbleSpeed = 32f;
 
     protected static class Particle{
         public float x, y, z;
