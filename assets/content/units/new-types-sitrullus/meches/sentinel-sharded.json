@@ -42,16 +42,25 @@
       "shootWarmupSpeed": 0.1,
       "heatColor": "ab3400",
       "reload": 260,
-      "chargeSound": "rlOceanBossLaserChargeEdited",
+      "chargeSound": "none",
       "shootSound": "rlOceanBossLaserShoot",
       "soundPitchMax": 1,
       "soundPitchMin": 1,
-      "shootSoundVolume": 0.3,
+      "shootSoundVolume": 0.5,
       "shake": 8,
       "shootY": 49,
       "cooldownTime": 120,
       "predictTarget": false,
       "bullet": {
+        "chargeEffect": {
+          "type": "SoundEffect",
+          "maxVolume": 0.6,
+          "minVolume": 0.6,
+          "maxPitch": 1,
+          "minPitch": 1,
+          "sound": "rlOceanBossLaserChargeEdited",
+          "effect": "none"
+        },
         "shootEffect": [
         {
           "type": "ParticleEffect",
