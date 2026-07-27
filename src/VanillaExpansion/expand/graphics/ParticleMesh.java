@@ -17,7 +17,9 @@ public abstract class ParticleMesh implements GenericMesh{
     protected float time;
     protected float tiltDeg;
     protected float wobbleAmp = 5f;
-    protected float wobbleSpeed = 32f;
+    protected float wobbleSpeed = 45f;
+
+    public static float activeTiltX, activeTiltZ;
 
     protected static class Particle{
         public float x, y, z;
@@ -57,6 +59,9 @@ public abstract class ParticleMesh implements GenericMesh{
         float wobble = time * wobbleSpeed;
         float tiltX = tiltDeg + wobbleAmp * Mathf.cos(wobble);
         float tiltZ = wobbleAmp * Mathf.sin(wobble);
+        activeTiltX = tiltX;
+        activeTiltZ = tiltZ;
+
         float cosTx = Mathf.cosDeg(tiltX), sinTx = Mathf.sinDeg(tiltX);
         float cosTz = Mathf.cosDeg(tiltZ), sinTz = Mathf.sinDeg(tiltZ);
 

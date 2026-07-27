@@ -11,7 +11,7 @@ public class RotatingMesh implements GenericMesh{
     public float speed;
     public float tiltDeg = 15f;
     public float wobbleAmp = 5f;
-    public float wobbleSpeed = 32f;
+    public float wobbleSpeed = 128f;
 
     private Vec3 axis = new Vec3();
 

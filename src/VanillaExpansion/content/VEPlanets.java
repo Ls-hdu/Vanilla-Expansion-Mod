@@ -1,8 +1,11 @@
 package VanillaExpansion.content;
 
+import VanillaExpansion.VESounds;
 import VanillaExpansion.expand.graphics.AsteroidBeltMesh;
 import VanillaExpansion.expand.graphics.MagneticFluxMesh;
+import VanillaExpansion.expand.graphics.NeutronJetBeamMesh;
 import VanillaExpansion.expand.graphics.NeutronJetParticleMesh;
+import VanillaExpansion.expand.graphics.NeutronJetSpinBeam;
 import VanillaExpansion.expand.graphics.RotatingMesh;
 import VanillaExpansion.expand.graphics.ZAxisSkyMesh;
 import VanillaExpansion.expand.maps.NeutronStarPlanetGenerator;
@@ -36,7 +39,18 @@ public class VEPlanets {
                 new SunMesh(this, 8, 5d, 0.3d, 3d, 1.2d, 0.8d, 1.1f, new Color[]{Color.valueOf("88bbff"), Color.valueOf("88ddff"), Color.valueOf("aaccff"), Color.valueOf("ccddff"), Color.valueOf("eeeeff"), Color.valueOf("ffffff")}),
                 new MagneticFluxMesh(this)
             }), 720f);
-            cloudMeshLoader = () -> new NeutronJetParticleMesh(this, 400);
+            cloudMeshLoader = () -> new MultiMesh(
+                new NeutronJetParticleMesh(this, 400),
+                new NeutronJetBeamMesh(this, 6f, 0.4f, 0.15f){{
+                    drawSector = true;
+                    sectorTilt = 15f;
+                    sectorAngle = 5f;
+                    sectorLength = 27f;
+                    sectorColor = Color.valueOf("87CEEB");
+                    sectorAlpha = 0.3f;
+                }},
+                new NeutronJetSpinBeam(this, 27f, 0.3f, 0.15f)
+            );
             visible = true;
             accessible = false;
             hasAtmosphere = true;
