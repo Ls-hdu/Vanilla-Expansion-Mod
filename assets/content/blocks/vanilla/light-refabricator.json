@@ -1,0 +1,22 @@
+{
+  //"type": "Reconstructor",
+  "category": "units",
+  "requirements": [
+    "silicon/200",
+    "tungsten/50"
+  ],
+  "size": 5,
+  "consumes": {
+    "power": 0.5
+  },
+  "constructTime": 300,
+  "upgrades": [
+    [ "obviate","obvight" ]
+  ],
+  "research": {
+    "parent": "prime-refabricator",
+    "objectives": [
+      "obviate"
+    ]
+  }
+}
