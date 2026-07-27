@@ -42,6 +42,9 @@ public class VEBlocks {
     public static Block pipe;
     public static Block adaptLiquidBridge;
 
+    // 16方向测试
+    public static Block test16Dir;
+
 
 
     public static void load(){
@@ -131,6 +134,18 @@ public class VEBlocks {
             ));
             health = 45;
             invert = true;
+        }};
+
+        // 16方向测试方块
+        test16Dir = new SixteenDirectionBlock("test-16dir"){{
+            requirements(Category.distribution, ItemStack.with(Items.copper, 1));
+            buildVisibility = BuildVisibility.shown;
+            alwaysUnlocked = true;
+            size = 1;
+            destructible = true;
+            health = 200;
+            instantBuild = true;
+            quickRotate = false;
         }};
     }
 }

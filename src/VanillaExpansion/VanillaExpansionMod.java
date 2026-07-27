@@ -2,9 +2,13 @@ package VanillaExpansion;
 
 import arc.Events;
 import arc.scene.ui.layout.Table;
+import mindustry.Vars;
 import mindustry.game.EventType;
+import mindustry.input.DesktopInput;
 import mindustry.mod.Mod;
+import VanillaExpansion.expand.input.VEInputHandler;
 
+import static mindustry.Vars.control;
 import static mindustry.Vars.state;
 import static mindustry.Vars.ui;
 
@@ -13,14 +17,11 @@ public class VanillaExpansionMod extends Mod {
     public static MultiCrafterPayloadFragment payloadFragment;
     @Override
     public void init() {
-        //listen for game load event
-        //Events.on(EventType.ClientLoadEvent.class, e -> {
-            //if (Vars.control != null && Vars.control.input instanceof DesktopInput) {
-                //VanillaExpansion.expand.input.VEInputHandler proximaInput = new VanillaExpansion.expand.input.VEInputHandler();
-                //proximaInput.block = Vars.control.input.block;
-                //Vars.control.input = proximaInput;
-            //}
-        //});
+        // 替换输入处理器（仅客户端）
+        Events.on(EventType.ClientLoadEvent.class, e -> {
+            control.setInput(new VEInputHandler());
+        });
+
         // 等待 UI 就绪
         Events.run(EventType.Trigger.uiDrawBegin, () -> {
             if (payloadFragment == null) {
