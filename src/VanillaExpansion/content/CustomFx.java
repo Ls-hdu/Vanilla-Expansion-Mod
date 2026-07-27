@@ -1,0 +1,61 @@
+package VanillaExpansion.content;
+
+import VanillaExpansion.VEPal;
+import arc.*;
+import arc.graphics.*;
+import arc.graphics.g2d.*;
+import arc.math.*;
+import arc.math.geom.*;
+import arc.struct.*;
+import arc.util.*;
+import mindustry.entities.*;
+import mindustry.entities.abilities.*;
+import mindustry.gen.*;
+import mindustry.graphics.*;
+import mindustry.type.*;
+import mindustry.world.*;
+import mindustry.world.blocks.units.UnitAssembler.*;
+
+import static arc.graphics.g2d.Draw.rect;
+import static arc.graphics.g2d.Draw.*;
+import static arc.graphics.g2d.Lines.*;
+import static arc.math.Angles.*;
+import static mindustry.Vars.*;
+
+public class CustomFx{
+    public static final Rand rand = new Rand();
+    public static final Vec2 v = new Vec2();
+
+    public static void load() {
+        Effect instHit2 = new Effect(20f, 200f, e -> {
+            color(VEPal.cyclant);
+
+            for (int i = 0; i < 2; i++) {
+                color(i == 0 ? VEPal.cyclant : VEPal.cyclant);
+
+                float m = i == 0 ? 1f : 0.5f;
+
+                for (int j = 0; j < 5; j++) {
+                    float rot = e.rotation + Mathf.randomSeedRange(e.id + j, 50f);
+                    float w = 23f * e.fout() * m;
+                    Drawf.tri(e.x, e.y, w, (80f + Mathf.randomSeedRange(e.id + j, 40f)) * m, rot);
+                    Drawf.tri(e.x, e.y, w, 20f * m, rot + 180f);
+                }
+            }
+
+            e.scaled(10f, c -> {
+                color(VEPal.cyclant);
+                stroke(c.fout() * 2f + 0.2f);
+                circle(e.x, e.y, c.fin() * 30f);
+            });
+
+            e.scaled(12f, c -> {
+                color(VEPal.cyclant);
+                randLenVectors(e.id, 25, 5f + e.fin() * 80f, e.rotation, 60f, (x, y) -> {
+                    Fill.square(e.x + x, e.y + y, c.fout() * 3f, 45f);
+                });
+            });
+        });
+    }
+}
+

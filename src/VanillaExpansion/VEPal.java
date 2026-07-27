@@ -29,4 +29,7 @@ public class VEPal {
     public static Color ancientDark = ancient.cpy().lerp(Color.black, 0.995f);
 
     public static Color lightSkyMiddle = new Color(0x78a7ff);
+
+    public static Color cyclant = new Color(0x90dbff);
+    public static Color lacuna = new Color(0x00ffce);
 }

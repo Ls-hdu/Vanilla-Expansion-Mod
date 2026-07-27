@@ -4,21 +4,62 @@
   "category": "turret",
   "size": 4,
   "ammoTypes": {
-    "surge-alloy": {
+    "silicide": {
       "type": "PointBulletType",
-      "lifetime": 720,//600
-      "damage": 1350,
+      "lifetime": 640,//600
+      "damage": 500,
+      "impact": true,
+      "knockback": 16,
+      "pierceArmor": true,
       "trailEffect": "instTrail",
       "shootEffect": "instShoot",
       "smokeEffect": "smokeCloud",
       "hitEffect": "instHit",
       "despawnEffect": "instBomb",
       "buildingDamageMultiplier": 0.2,
+      "reloadMultiplier": 1.2,
       "hitShake": 6,
       "ammoMultiplier": 1,
       "trailSpacing": 20,
       "despawnHit": false,
+      "rangeChange": 40
+    },
+    "surge-alloy": {
+      "type": "PointBulletType",
+      "lifetime": 720,//600
+      "damage": 1350,
+      "pierceArmor": true,
+      "trailEffect": "instTrail",
+      "shootEffect": "instShoot",
+      "smokeEffect": "smokeCloud",
+      "hitEffect": "instHit",
+      "despawnEffect": "instBomb",
+      "buildingDamageMultiplier": 0.2,
+      "status": "shocked",
+      "statusDuration": 10,
+      "hitShake": 6,
+      "ammoMultiplier": 2,
+      "trailSpacing": 20,
+      "despawnHit": false,
       "rangeChange": 120
+    },
+    "fibralt": {
+      "type": "PointBulletType",
+      "lifetime": 640,//600
+      "damage": 100,
+      "armorMultiplier": -80,
+      "trailEffect": "instTrail",
+      "shootEffect": "instShoot",
+      "smokeEffect": "smokeCloud",
+      "hitEffect": "instHit",
+      "despawnEffect": "instBomb",
+      "buildingDamageMultiplier": 0.2,
+      "buildingArmorMultiplier": 0,
+      "hitShake": 6,
+      "ammoMultiplier": 1,
+      "trailSpacing": 20,
+      "despawnHit": false,
+      "rangeChange": 40
     },
     "fusion-fuel": {
       "type": "PointBulletType",
@@ -36,42 +77,15 @@
             "colorFrom": "9eabf788",
             "colorTo": "9eabf7",
             "sizeFrom": 4,
-            "sizeInterp": "circleIn",
             "lifetime": 60,
             "sizeTo": 0,
             "layer": 100
-          },
+          }
         ]
       },
       "shootEffect": "instShoot",
       "smokeEffect": "smokeCloud",
       "hitEffect": {
-        "type": "MultiEffect",
-        "effects": [ "instHit",
-          {
-            "type": "ExplosionEffect",
-            "waveColor": "9eabf7",
-            "smokeColor": "9eabf766",
-            "sparkColor": "f3e979",
-            "waveLife": 8,
-            "waveStroke": 3,
-            "waveRad": 128,
-            "waveRadBase": 0,
-            "sparkStroke": 3,
-            "sparkRad": 128,
-            "sparkLen": 14,
-            "smokeSize": 32,
-            "smokeSizeBase": 1,
-            "smokeRad": 160,
-            "smokes": 26,
-            "sparks": 24,
-            "lifetime": 180
-          }
-        ]
-      },
-      "hitSound": "boom",
-      "despawnSound": "boom",
-      "despawnEffect": {
         "type": "MultiEffect",
         "effects": [ "instBomb",
           {
@@ -80,32 +94,68 @@
             "smokeColor": "9eabf766",
             "sparkColor": "f3e979",
             "waveLife": 8,
-            "waveStroke": 3,
+            "waveStroke": 0,
             "waveRad": 128,
             "waveRadBase": 0,
-            "sparkStroke": 3,
-            "sparkRad": 128,
+            "sparkStroke": 2,
+            "sparkRad": 48,
             "sparkLen": 14,
-            "smokeSize": 32,
+            "smokeSize": 16,
             "smokeSizeBase": 1,
             "smokeRad": 160,
-            "smokes": 26,
+            "smokes": 52,
             "sparks": 24,
             "lifetime": 180
+          },
+          {
+            "type": "WaveEffect",
+            "colorFrom": "ffffff",
+            "colorTo": "9eabf7",
+            "strokeFrom": 4,
+            "strokeTo": 0,
+            "interp": "pow2Out",
+            "sizeFrom": 0,
+            "sizeTo": 128,
+            "lifetime": 30
+          },
+          {
+            "type": "WaveEffect",
+            "colorFrom": "9eabf7",
+            "colorTo": "9eabf700",
+            "strokeFrom": 16,
+            "strokeTo": 4,
+            "interp": "pow2Out",
+            "sizeFrom": 0,
+            "sizeTo": 108,
+            "lifetime": 40
+          },
+          {
+            "type": "WaveEffect",
+            "colorFrom": "ffffff",
+            "colorTo": "9eabf7",
+            "strokeFrom": 4,
+            "strokeTo": 0,
+            "interp": "pow2Out",
+            "sizeFrom": 0,
+            "sizeTo": 128,
+            "lifetime": 40
           }
         ]
       },
+      "hitSound": "boom",
+      "despawnSound": "boom",
+      "despawnHit": true,
       "buildingDamageMultiplier": 0.5,
       "status": "burning",
       "statusDuration": 600,
       "splashDamage": 3280,
+      "armorMultiplier": 25,
       "scaledSplashDamage": true,
       "splashDamageRadius": 128,
       "hitShake": 10,
-      "ammoMultiplier": 1,
+      "ammoMultiplier": 2,
       "trailSpacing": 20,
-      "despawnHit": false,
-      "makeFire": true,
+      "makeFire": false,
       "reloadMultiplier": 0.8
     },
     "capacitor": {
@@ -116,7 +166,7 @@
       "shootEffect": "instShoot",
       "smokeEffect": "smokeCloud",
       "buildingDamageMultiplier": 0.2,
-      "ammoMultiplier": 5,
+      "ammoMultiplier": 10,
       "trailSpacing": 20,
         "hitEffect": {
           "type": "MultiEffect",
@@ -139,12 +189,12 @@
             },"hitLaserBlast","instBomb" ]
         },
         "despawnHit": false,
-        "hitSound": "shootArc",
-        "despawnSound": "shootArc",
+        "hitSound": "explosionArtilleryShock",
+        "despawnSound": "explosionArtilleryShock",
         "status": "shocked",
         "statusDuration": 60,
         "splashDamage": 1320,
-        "splashDamageRadius": 64,
+        "splashDamageRadius": 40,
         "hitShake": 8,
         "despawnShake": 6,
         "fragBullets": 7,
@@ -161,7 +211,7 @@
           "lifetime": 20
         }
     }
-  }
+  },
   "recoil": 5,
   "shootSound": "shootForeshadow",
   "shootX": 0,
@@ -182,7 +232,7 @@
   "inaccuracy": 0,
   "shootCone": 2,
   "rotateSpeed": 3,
-  "ammoPerShot": 5,
+  "ammoPerShot": 10,
   "maxAmmo": 40,
   "predictTarget": false,
   "drawer": {

@@ -51,5 +51,6 @@ public class VanillaExpansionMod extends Mod {
         //VanillaExpansion.content.VEUnitTypes.load();
         VanillaExpansion.content.VEBlocks.load();
         VanillaExpansion.content.VEPlanets.load();
+        VanillaExpansion.content.CustomFx.load();
     }
 }
