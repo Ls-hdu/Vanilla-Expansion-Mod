@@ -8,7 +8,7 @@ import mindustry.type.*;
  * Proxima物品注册
  */
 public class VEItems {
-    public static Item iron, uranium, manganese, quartz;
+    public static Item iron, uranium, manganese;
     
     public static final Seq<Item> proximaOreItems = new Seq<>();
     
@@ -38,11 +38,7 @@ public class VEItems {
             healthScaling = 0.7f;
         }};
         
-        quartz = new Item("quartz", Color.valueOf("f0f0f0")){{
-            cost = 0.9f;
-        }};
-        
-        proximaOreItems.addAll(iron, uranium, manganese, quartz);
+        proximaOreItems.addAll(iron, uranium, manganese);
         
         // 钚238-铍中子源 - 深蓝色带放射性
         plutonium238BerylliumSource = new RBMKRodItem("plutonium238-beryllium-source", new Color(0.2f, 0.3f, 0.8f)){{
