@@ -44,6 +44,8 @@ public class VEBlocks {
 
     // 16方向测试
     public static Block test16Dir;
+    //钻头
+    public static Block rockCoreDrill;
 
 
 
@@ -146,6 +148,41 @@ public class VEBlocks {
             health = 200;
             instantBuild = true;
             quickRotate = false;
+        }};
+        // 岩芯钻机
+        rockCoreDrill = new RockCoreDrill("rock-core-drill"){{
+            requirements(Category.production, ItemStack.with(
+                    Items.copper, 80,
+                    Items.lead, 60,
+                    Items.graphite, 40
+            ));
+            // 基础属性
+            size = 2;
+            tier = 3;
+            drillTime = 1120f;      // 单个钻头挖掘时间
+            warmupSpeed = 0.015f;
+
+            // 定义4个钻孔的偏移坐标（相对于方块中心，单位：像素）
+            // size=2时，方块大小为64x64像素，中心点偏移4像素到四个象限
+            drillCount = 4;
+            drillOffsetX = new float[]{-4f, 4f, -4f, 4f};
+            drillOffsetY = new float[]{-4f, -4f, 4f, 4f};
+
+            // 可选：设置每个钻孔的转速乘数（默认都是1.0f）
+            drillSpeedMultipliers = new float[]{1.0f, 1.0f, 1.0f, 1.0f};
+
+            // 可选：设置显示效果
+            drawMultipleDrills = true;
+            drawMineItem = true;
+
+            // 启用液体强化
+            liquidBoostIntensity = 1.6f;  // 2.56倍速度提升
+
+            // 添加液体消耗（水）
+            consume(new ConsumeLiquid(Liquids.water, 4f / 60f){{
+                optional = true;   // 可选，不是必需的
+                booster = true;    // 标记为强化剂
+            }}); // 6/秒，转换为每帧消耗
         }};
     }
 }
