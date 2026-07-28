@@ -6,6 +6,7 @@ import VanillaExpansion.expand.world.block.distribution.MechanicalArm;
 import VanillaExpansion.expand.world.block.distribution.SideOutputConveyor;
 import VanillaExpansion.expand.world.block.liquid.AdaptLiquidBridge;
 import VanillaExpansion.expand.world.block.liquid.Pipe;
+import VanillaExpansion.expand.world.block.liquid.SideOutputConduit;
 import VanillaExpansion.expand.world.block.optics.LaserEmitter;
 import VanillaExpansion.expand.world.block.optics.LaserMirror;
 import VanillaExpansion.expand.world.block.optics.LaserReceiver;
@@ -79,6 +80,8 @@ public class VEBlocks {
 
     // 管道
     public static Block pipe;
+    // 侧向输出导管
+    public static Block sideOutputConduit;
 
     // 16方向测试方块
     public static Block sixteenDirectionTestBlock;
@@ -312,6 +315,14 @@ public class VEBlocks {
             ));
         }};
 
+        // 万用交叉器
+        proximaJunction = new Junction("proxima-junction"){{
+            requirements(Category.distribution, ItemStack.with(
+                Items.copper, 15,
+                Items.lead, 10
+            ));
+        }};
+
         // 高速侧输出传送带
         fastSideOutputConveyor = new SideOutputConveyor("fast-side-output-conveyor"){{
             speed = 0.15f;
@@ -321,14 +332,8 @@ public class VEBlocks {
                 Items.lead, 10,
                 Items.titanium, 5
             ));
-        }};
-
-        // 万用交叉器
-        proximaJunction = new Junction("proxima-junction"){{
-            requirements(Category.distribution, ItemStack.with(
-                Items.copper, 15,
-                Items.lead, 10
-            ));
+            junctionReplacement = proximaJunction;
+            bridgeReplacement = adaptItemBridge;
         }};
 
         // 管道
@@ -338,6 +343,16 @@ public class VEBlocks {
                 Items.lead, 5
             ));
             bridgeReplacement = adaptLiquidBridge;
+        }};
+
+        // 侧向输出导管
+        sideOutputConduit = new SideOutputConduit("side-output-conduit"){{
+            requirements(Category.liquid, ItemStack.with(
+                Items.copper, 15,
+                Items.lead, 10
+            ));
+            bridgeReplacement = adaptLiquidBridge;
+            junctionReplacement = proximaJunction;
         }};
 
         // 16方向测试方块 - 只有生命值属性

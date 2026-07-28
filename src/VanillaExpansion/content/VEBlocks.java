@@ -6,6 +6,7 @@ import VanillaExpansion.expand.world.block.distribution.MechanicalArm;
 import VanillaExpansion.expand.world.block.distribution.SideOutputConveyor;
 import VanillaExpansion.expand.world.block.liquid.AdaptLiquidBridge;
 import VanillaExpansion.expand.world.block.liquid.Pipe;
+import VanillaExpansion.expand.world.block.liquid.SideOutputConduit;
 import VanillaExpansion.expand.world.block.optics.LaserEmitter;
 import VanillaExpansion.expand.world.block.optics.LaserMirror;
 import VanillaExpansion.expand.world.block.optics.LaserReceiver;
@@ -40,6 +41,7 @@ public class VEBlocks {
 
     //i say 神TM的流体
     public static Block pipe;
+    public static Block sideOutputConduit;
     public static Block adaptLiquidBridge;
 
     // 16方向测试
@@ -98,6 +100,13 @@ public class VEBlocks {
             range = 6;
             health = 350;
         }};
+        // 万用交叉器
+        proximaJunction = new Junction("proxima-junction"){{
+            requirements(Category.distribution, ItemStack.with(
+                Items.copper, 15,
+                Items.lead, 10
+            ));
+        }};
         // 高速侧输出传送带
         fastSideOutputConveyor = new SideOutputConveyor("fast-side-output-conveyor"){{
             speed = 0.15f;
@@ -107,13 +116,8 @@ public class VEBlocks {
                 Items.lead, 10,
                 Items.titanium, 5
             ));
-        }};
-        // 万用交叉器
-        proximaJunction = new Junction("proxima-junction"){{
-            requirements(Category.distribution, ItemStack.with(
-                Items.copper, 15,
-                Items.lead, 10
-            ));
+            junctionReplacement = proximaJunction;
+            bridgeReplacement = adaptItemBridge;
         }};
         // 管道
         pipe = new Pipe("pipe"){{
@@ -122,6 +126,16 @@ public class VEBlocks {
                 Items.lead, 5
             ));
             bridgeReplacement = adaptLiquidBridge;
+            junctionReplacement = proximaJunction;
+        }};
+        // 侧向输出导管
+        sideOutputConduit = new SideOutputConduit("side-output-conduit"){{
+            requirements(Category.liquid, ItemStack.with(
+                Items.copper, 15,
+                Items.lead, 10
+            ));
+            bridgeReplacement = adaptLiquidBridge;
+            junctionReplacement = proximaJunction;
         }};
         overflow = new OverflowGate("proxima-overflow-gate"){{
             requirements(Category.distribution, ItemStack.with(
