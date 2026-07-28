@@ -8,6 +8,10 @@
       {
         "type": "SectorComplete",
         "preset": "fort-port"
+      },
+      {
+        "type": "OnSector",
+        "preset": "tutorial-floor-crusher"
       }
     ]
   },
