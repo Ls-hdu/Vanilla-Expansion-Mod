@@ -9,6 +9,7 @@ import arc.math.Angles;
 import arc.math.Mathf;
 import arc.math.geom.Point2;
 import arc.scene.ui.layout.Table;
+import arc.util.Eachable;
 import arc.struct.Seq;
 import arc.util.Nullable;
 import arc.util.Tmp;
@@ -34,6 +35,7 @@ import static mindustry.Vars.*;
 public class AdaptLiquidBridge extends LiquidBridge {
     public static final int maxLinks = 3;
     public TextureRegion topRegion;
+    public TextureRegion center;
     public boolean invert;
 
     public AdaptLiquidBridge(String name) {
@@ -54,6 +56,12 @@ public class AdaptLiquidBridge extends LiquidBridge {
     public void load() {
         super.load();
         topRegion = Core.atlas.find(name + "-top");
+        center = Core.atlas.find(name + "-center");
+    }
+
+    @Override
+    public void drawPlanConfig(BuildPlan plan, Eachable<BuildPlan> list){
+        drawPlanConfigCenter(plan, plan.config, name + "-center", true);
     }
 
     @Override
@@ -157,7 +165,7 @@ public class AdaptLiquidBridge extends LiquidBridge {
 
             if (sortLiquid != null) {
                 Draw.color(sortLiquid.color);
-                Fill.square(x, y, tilesize / 2f - 0.00001f);
+                Draw.rect(center, x, y);
                 Draw.color();
             }
 
