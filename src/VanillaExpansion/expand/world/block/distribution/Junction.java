@@ -6,19 +6,14 @@ import arc.util.io.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.world.*;
-import mindustry.world.blocks.heat.*;
 import mindustry.world.meta.*;
-
-import java.util.Arrays;
 
 import static mindustry.Vars.*;
 
 public class Junction extends Block{
-    public float speed = 26;
+    public float speed = 6;
     public int capacity = 6;
-    public float displayedSpeed = 13f;
-    public float visualMaxHeat = 450f;
-
+    public float displayedSpeed = 6f;
     public Junction(String name){
         super(name);
         update = true;
@@ -47,7 +42,6 @@ public class Junction extends Block{
         stats.add(Stat.itemCapacity, table -> {
             table.add(Strings.autoFixed(capacity, 2) + " " + StatUnit.items.localized() + " " + StatUnit.perSide.localized());
         });
-        stats.add(Stat.heatCapacity, visualMaxHeat, StatUnit.heatUnits);
     }
 
     @Override
@@ -55,12 +49,8 @@ public class Junction extends Block{
         return true;
     }
 
-    public class JunctionBuild extends Building implements HeatBlock, HeatConsumer{
+    public class JunctionBuild extends Building{
         public DirectionalItemBuffer buffer = new DirectionalItemBuffer(capacity);
-        public float heat = 0f;
-        public float[] sideHeat = new float[4];
-        public IntSet cameFrom = new IntSet();
-        public long lastHeatUpdate = -1;
 
         @Override
         public boolean canBeReplaced(Block other){
@@ -95,69 +85,6 @@ public class Junction extends Block{
                     }
                 }
             }
-
-            updateHeat();
-        }
-
-        public void updateHeat(){
-            if(lastHeatUpdate == state.updateId) return;
-
-            lastHeatUpdate = state.updateId;
-
-            Arrays.fill(sideHeat, 0f);
-            cameFrom.clear();
-
-            heat = 0f;
-
-            for(var build : proximity){
-                if(build == null || build.team != team || !(build instanceof HeatBlock heater)) continue;
-
-                if(cameFrom.contains(build.id)) continue;
-                cameFrom.add(build.id);
-
-                if(build.block instanceof Junction){
-                    continue;
-                }
-
-                float add = heater.heat();
-                int dir = relativeTo(build);
-                if(dir >= 0 && dir < 4){
-                    sideHeat[dir] += add;
-                }
-                heat += add;
-            }
-
-            heat = Math.min(heat, visualMaxHeat);
-
-            for(int i = 0; i < 4; i++){
-                float inHeat = sideHeat[i];
-                if(inHeat > 0){
-                    int outDir = (i + 2) % 4;
-                    sideHeat[i] = 0;
-                    sideHeat[outDir] += inHeat;
-                }
-            }
-        }
-
-        @Override
-        public float[] sideHeat(){
-            return sideHeat;
-        }
-
-        @Override
-        public float heatRequirement(){
-            return visualMaxHeat;
-        }
-
-        @Override
-        public float heat(){
-            updateHeat();
-            return heat;
-        }
-
-        @Override
-        public float heatFrac(){
-            return heat / visualMaxHeat;
         }
 
         @Override
@@ -196,14 +123,12 @@ public class Junction extends Block{
         public void write(Writes write){
             super.write(write);
             buffer.write(write);
-            write.f(heat);
         }
 
         @Override
         public void read(Reads read, byte revision){
             super.read(read, revision);
             buffer.read(read, revision == 0);
-            heat = read.f();
         }
     }
 }

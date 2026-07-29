@@ -80,10 +80,8 @@ public class VEBlocks {
         // 分类物品桥
         adaptItemBridge = new AdaptItemBridge("adapt-item-bridge"){{
             requirements(Category.distribution, ItemStack.with(
-                Items.copper, 50,
-                Items.lead, 30,
-                Items.titanium, 20,
-                Items.silicon, 15
+                VEItems.iron, 13,
+                VEItems.manganese, 13
             ));
             buildVisibility = BuildVisibility.shown;
             alwaysUnlocked = true;
@@ -98,10 +96,8 @@ public class VEBlocks {
         // 分类流体桥
         adaptLiquidBridge = new AdaptLiquidBridge("adapt-liquid-bridge"){{
             requirements(Category.liquid, ItemStack.with(
-                Items.copper, 60,
-                Items.lead, 40,
-                Items.titanium, 25,
-                Items.silicon, 20
+                VEItems.iron, 15,
+                VEItems.manganese, 15
             ));
             buildVisibility = BuildVisibility.shown;
             alwaysUnlocked = true;
@@ -113,18 +109,18 @@ public class VEBlocks {
         // 万用交叉器
         proximaJunction = new Junction("proxima-junction"){{
             requirements(Category.distribution,ItemStack.with(
-                Items.copper, 15,
-                Items.lead, 10
+                VEItems.iron, 5,
+                VEItems.manganese, 5
             ));
+            speed = 8;
+            displayedSpeed = 38;
         }};
         // 高速侧输出传送带
         fastSideOutputConveyor = new SideOutputConveyor("fast-side-output-conveyor"){{
             speed = 0.15f;
             displayedSpeed = 20f;
             requirements(Category.distribution, ItemStack.with(
-                Items.copper, 20,
-                Items.lead, 10,
-                Items.titanium, 5
+                VEItems.iron, 1
             ));
             junctionReplacement = proximaJunction;
             bridgeReplacement = adaptItemBridge;
@@ -132,8 +128,7 @@ public class VEBlocks {
         // 侧向输出导管
         sideOutputConduit = new SideOutputConduit("side-output-conduit"){{
             requirements(Category.liquid, ItemStack.with(
-                Items.copper, 15,
-                Items.lead, 10
+                VEItems.manganese, 1
             ));
             bridgeReplacement = adaptLiquidBridge;
             junctionReplacement = proximaJunction;
@@ -165,8 +160,8 @@ public class VEBlocks {
         // 流体溢流门
         liquidOverflowGate = new LiquidOverflowGate("liquid-overflow-gate"){{
             requirements(Category.liquid, ItemStack.with(
-                Items.copper, 10,
-                Items.lead, 5
+                    VEItems.iron, 2,
+                    VEItems.manganese, 2
             ));
             buildVisibility = BuildVisibility.shown;
             alwaysUnlocked = true;
@@ -176,8 +171,8 @@ public class VEBlocks {
         // 流体反向溢流门
         liquidUnderflowGate = new LiquidOverflowGate("liquid-underflow-gate"){{
             requirements(Category.liquid, ItemStack.with(
-                Items.copper, 10,
-                Items.lead, 5
+                    VEItems.iron, 2,
+                    VEItems.manganese, 2
             ));
             buildVisibility = BuildVisibility.shown;
             alwaysUnlocked = true;
@@ -187,8 +182,8 @@ public class VEBlocks {
         // 流体分类器
         liquidSorter = new LiquidSorter("liquid-sorter"){{
             requirements(Category.liquid, ItemStack.with(
-                Items.copper, 15,
-                Items.lead, 10
+                    VEItems.iron, 4,
+                    VEItems.manganese, 10
             ));
             buildVisibility = BuildVisibility.shown;
             alwaysUnlocked = true;
@@ -224,9 +219,7 @@ public class VEBlocks {
         // 岩芯钻机
         rockCoreDrill = new RockCoreDrill("rock-core-drill"){{
             requirements(Category.production, ItemStack.with(
-                    Items.copper, 80,
-                    Items.lead, 60,
-                    Items.graphite, 40
+                    VEItems.iron, 20
             ));
             // 基础属性
             size = 2;
