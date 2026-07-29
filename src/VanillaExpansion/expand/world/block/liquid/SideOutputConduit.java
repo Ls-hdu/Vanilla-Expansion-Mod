@@ -36,13 +36,14 @@ public class SideOutputConduit extends Conduit {
     @Override
     public boolean blends(Tile tile, int rotation, int otherx, int othery, int otherrot, Block otherblock) {
         if (super.blends(tile, rotation, otherx, othery, otherrot, otherblock)) return true;
-        if (tile == null || !(tile.build instanceof SideOutputConduitBuild b)) return false;
-        if (!otherblock.hasLiquids || !b.isSideTarget(otherx, othery)) return false;
-        // whitelist: self-type allowed (with BD loop check), exclude other outputting blocks
+        if (tile == null) return false;
+        if (!otherblock.hasLiquids) return false;
+        // whitelist: self-type allowed (BD check: both sides side-face → disallow)
         if (otherblock instanceof SideOutputConduit) {
             int worldDir = tile.relativeTo(otherx, othery);
+            int mySide = Mathf.mod(worldDir - rotation, 4);
             int theirSide = Mathf.mod((worldDir + 2) - otherrot, 4);
-            return theirSide != 1 && theirSide != 3;
+            return !((mySide == 1 || mySide == 3) && (theirSide == 1 || theirSide == 3));
         }
         return !otherblock.outputsLiquid;
     }
@@ -94,8 +95,8 @@ public class SideOutputConduit extends Conduit {
             smoothLiquid = Mathf.lerpDelta(smoothLiquid, liquids.currentAmount() / liquidCapacity, 0.05f);
 
             if (liquids.currentAmount() > 0.0001f && timer(timerFlow, 1)) {
-                trySideOutput();
                 moveLiquidForward(leaks, liquids.current());
+                trySideOutput();
                 noSleep();
             } else {
                 sleep();
@@ -111,11 +112,12 @@ public class SideOutputConduit extends Conduit {
                 // whitelist: self-type always allowed (with BD loop check below)
                 // exclude other blocks that output fluid (routers, bridges, crafters, etc.)
                 if (!(target.block instanceof SideOutputConduit) && target.block.outputsLiquid) continue;
-                // disallow BD loop: both blocks connect through side faces
+                // BD check: disallow only when both sides use side faces
                 if (target.block instanceof SideOutputConduit) {
                     int worldDir = tile.relativeTo(target.tileX(), target.tileY());
+                    int mySide = Mathf.mod(worldDir - rotation, 4);
                     int theirSide = Mathf.mod((worldDir + 2) - target.rotation, 4);
-                    if (theirSide == 1 || theirSide == 3) continue;
+                    if ((mySide == 1 || mySide == 3) && (theirSide == 1 || theirSide == 3)) continue;
                 }
                 moveLiquid(target, liquid);
             }

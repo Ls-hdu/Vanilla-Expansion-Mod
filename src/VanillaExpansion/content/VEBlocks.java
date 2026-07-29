@@ -25,6 +25,7 @@ import mindustry.world.blocks.distribution.OverflowGate;
 import mindustry.world.blocks.environment.*;
 import mindustry.world.consumers.ConsumeCoolant;
 import mindustry.world.consumers.ConsumeLiquid;
+import mindustry.world.meta.BlockGroup;
 import mindustry.world.meta.BuildVisibility;
 import VanillaExpansion.expand.world.block.*;
 
@@ -35,6 +36,7 @@ public class VEBlocks {
     //i say 神TM的物流
     public static Block fastSideOutputConveyor;
     public static Block proximaJunction;
+    public static Block proximaJunctionLiquid;
     public static Block adaptItemBridge;
     public static Block overflow;
     public static Block invertoverflow;
@@ -102,10 +104,17 @@ public class VEBlocks {
         }};
         // 万用交叉器
         proximaJunction = new Junction("proxima-junction"){{
-            requirements(Category.distribution, ItemStack.with(
+            requirements(Category.distribution,ItemStack.with(
                 Items.copper, 15,
                 Items.lead, 10
             ));
+        }};
+        proximaJunctionLiquid = new Junction("proxima-junction-liquid"){{
+            requirements(Category.liquid, ItemStack.with(
+                Items.copper, 15,
+                Items.lead, 10
+            ));
+            group = BlockGroup.liquids;
         }};
         // 高速侧输出传送带
         fastSideOutputConveyor = new SideOutputConveyor("fast-side-output-conveyor"){{
@@ -135,7 +144,7 @@ public class VEBlocks {
                 Items.lead, 10
             ));
             bridgeReplacement = adaptLiquidBridge;
-            junctionReplacement = proximaJunction;
+            junctionReplacement = proximaJunctionLiquid;
         }};
         overflow = new OverflowGate("proxima-overflow-gate"){{
             requirements(Category.distribution, ItemStack.with(
