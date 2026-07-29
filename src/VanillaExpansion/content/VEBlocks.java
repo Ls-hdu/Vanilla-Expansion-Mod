@@ -23,7 +23,9 @@ import mindustry.gen.Sounds;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.world.blocks.distribution.DuctRouter;
 import mindustry.world.blocks.distribution.OverflowGate;
+import mindustry.world.blocks.distribution.Sorter;
 import mindustry.world.blocks.environment.*;
 import mindustry.world.consumers.ConsumeCoolant;
 import mindustry.world.consumers.ConsumeLiquid;
@@ -38,13 +40,14 @@ public class VEBlocks {
     //i say 神TM的物流
     public static Block fastSideOutputConveyor;
     public static Block proximaJunction;
-    public static Block proximaJunctionLiquid;
     public static Block adaptItemBridge;
     public static Block overflow;
     public static Block invertoverflow;
+    public static Block proximaDuctRouter;
+    public static Block proximaInvertSorter;
+    public static Block proximaSorter;
 
     //i say 神TM的流体
-    public static Block pipe;
     public static Block sideOutputConduit;
     public static Block liquidOverflowGate;
     public static Block liquidUnderflowGate;
@@ -94,7 +97,7 @@ public class VEBlocks {
 
         // 分类流体桥
         adaptLiquidBridge = new AdaptLiquidBridge("adapt-liquid-bridge"){{
-            requirements(Category.distribution, ItemStack.with(
+            requirements(Category.liquid, ItemStack.with(
                 Items.copper, 60,
                 Items.lead, 40,
                 Items.titanium, 25,
@@ -134,6 +137,30 @@ public class VEBlocks {
             ));
             bridgeReplacement = adaptLiquidBridge;
             junctionReplacement = proximaJunction;
+        }};
+        proximaDuctRouter = new DuctRouter("duct-router"){{
+            requirements(Category.distribution, ItemStack.with(
+                    VEItems.iron, 5
+            ));
+            health = 50;
+            speed = 2;
+            solid = false;
+        }};
+        proximaInvertSorter = new Sorter("invert-sorter"){{
+            requirements(Category.distribution, ItemStack.with(
+                    VEItems.iron, 2,
+                    VEItems.manganese, 2
+            ));
+            invert = true;
+            health =50;
+        }};
+        proximaSorter = new Sorter("sorter"){{
+            requirements(Category.distribution, ItemStack.with(
+                    VEItems.iron, 2,
+                    VEItems.manganese, 2
+            ));
+            invert = false;
+            health =50;
         }};
         // 流体溢流门
         liquidOverflowGate = new LiquidOverflowGate("liquid-overflow-gate"){{
