@@ -133,7 +133,7 @@ public class VEBlocks {
             bridgeReplacement = adaptLiquidBridge;
             junctionReplacement = proximaJunction;
         }};
-        proximaDuctRouter = new DuctRouter("duct-router"){{
+        proximaDuctRouter = new DuctRouter("proxima-duct-router"){{
             requirements(Category.distribution, ItemStack.with(
                     VEItems.iron, 5
             ));
@@ -141,7 +141,7 @@ public class VEBlocks {
             speed = 2;
             solid = false;
         }};
-        proximaInvertSorter = new Sorter("invert-sorter"){{
+        proximaInvertSorter = new Sorter("proxima-inverted-sorter"){{
             requirements(Category.distribution, ItemStack.with(
                     VEItems.iron, 2,
                     VEItems.manganese, 2
@@ -149,7 +149,7 @@ public class VEBlocks {
             invert = true;
             health =50;
         }};
-        proximaSorter = new Sorter("sorter"){{
+        proximaSorter = new Sorter("proxima-sorter"){{
             requirements(Category.distribution, ItemStack.with(
                     VEItems.iron, 2,
                     VEItems.manganese, 2

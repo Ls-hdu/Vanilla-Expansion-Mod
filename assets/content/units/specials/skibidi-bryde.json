@@ -1,0 +1,151 @@
+{
+  "type": "tank",
+  "rotateSpeed": 4,
+  "databaseTag": "10special-unit",
+  "rotateMoveFirst": true,
+  "drag": 0.2,
+  "speed": 1,
+  "drawCell": false,
+  "parts": [
+    {
+      "type": "RegionPart",
+      "name": "ve-toilet-base",
+      "layer": 75
+    },
+    {
+      "type": "RegionPart",
+      "name": "ve-toilet-tank",
+      "layer": 75.4
+    }
+  ],
+  "groundLayer": 75,
+  "crushDamage": 2.5,
+  "research": {
+    "parent": "charge"
+  },
+  "shownPlanets": [ "cyclant","thavina","phoon" ],
+  "immunities": [ "blown","wet" ],
+  "hitSize": 35,
+  "deathSound": "none",
+  "deathShake": 0,
+  "createScorch": false,
+  "deathExplosionEffect": "none",
+  "health": 2730,
+  "armor": 7,
+  "faceTarget": false,
+  "omniMovement": false,
+  "canDrown": false,
+  "floorMultiplier": -0.75,
+  "abilities": [
+    {
+      "type": "ShieldRegenFieldAbility",
+      "amount": 20,
+      "max": 40,
+      "reload": 240,
+      "range": 60
+    }
+  ],
+  "weapons": [
+    {
+      "name": "bryde-in",
+      "layerOffset": 0.1,
+      "y": 5,
+      "x": 0,
+      "shadow": 30,
+      "mirror": false,
+      "useAttackRange": false,
+      "display": false,
+      "shootOnDeath": true,
+      "shootY": -5,
+      "shootSound": "toilet",
+      "controllable": false,
+      "shootCone": 361,
+      "bullet": {
+        "instantDisappear": true,
+        "shootEffect": "none",
+        "smokeEffect": "none",
+        "hitEffect": "none",
+        "despawnEffect": "none",
+        "speed": 0,
+        "despawnUnit": "skibidi-bryde-flush"
+      }
+    },
+    {
+      "name": "toilet-large-artillery",
+      "layerOffset": 0.2,
+      "reload": 65,
+      "mirror": false,
+      "x": 0,
+      "y": 1.5,
+      "rotateSpeed": 1.7,
+      "rotate": true,
+      "shootY": 7,
+      "shake": 5,
+      "recoil": 4,
+      "shadow": 12,
+      "inaccuracy": 3,
+      "ejectEffect": "casing3",
+      "shootSound": "shootArtillery",
+      "bullet": {
+        "type": "ArtilleryBulletType",
+        "speed": 3.2,
+        "damage": 15,
+        "trailMult": 0.8,
+        "hitEffect": "massiveExplosion",
+        "knockback": 1.5,
+        "lifetime": 84,
+        "height": 15.5,
+        "width": 15,
+        "collidesTiles": false,
+        "splashDamageRadius": 40,
+        "splashDamage": 70,
+        "backColor": "e58956",
+        "frontColor": "ffd2ae",
+        "trailEffect": "artilleryTrail",
+        "trailSize": 6,
+        "hitShake": 4,
+        "shootEffect": "shootBig2",
+        "status": "blasted",
+        "statusDuration": 60
+      }
+    },
+    {
+      "name": "toilet-missiles-mount",
+      "layerOffset": 0.3,
+      "reload": 20,
+      "x": 8.5,
+      "y": -4,
+      "shadow": 6,
+      "rotateSpeed": 4,
+      "rotate": true,
+      "shoot": {
+        "shots": 2,
+        "shotDelay": 3
+      },
+      "inaccuracy": 5,
+      "velocityRnd": 0.1,
+      "shootSound": "shootMissileShort",
+      "ejectEffect": "none",
+      "bullet": {
+        "speed": 2.7,
+        "damage": 12,
+        "height": 8,
+        "width": 8,
+        "shrinkY": 0,
+        "drag": -0.003,
+        "homingRange": 60,
+        "keepVelocity": false,
+        "splashDamageRadius": 25,
+        "splashDamage": 10,
+        "lifetime": 70,
+        "trailColor": "454545",
+        "backColor": "f9c27a",
+        "frontColor": "fff8e8",
+        "hitEffect": "blastExplosion",
+        "despawnEffect": "blastExplosion",
+        "waveScale": 8,
+        "weaveMag": 1
+      }
+    }
+  ]
+}

@@ -10,7 +10,8 @@
   "constructTime": 1800,
   "upgrades": [
     [ "arrange","charge" ],
-    [ "egnarra","charge" ]
+    [ "egnarra","charge" ],
+    [ "bryde","skibidi-bryde" ]
   ],
   "research": {
     "parent": "junior-armorcar-reconstructor",

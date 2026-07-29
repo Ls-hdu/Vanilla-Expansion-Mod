@@ -1,0 +1,157 @@
+{
+  "type": "tank",
+  "rotateSpeed": 0,
+  "rotateMoveFirst": true,
+  "drag": 0.2,
+  "speed": 0,
+  "drawCell": false,
+  "parts": [
+    {
+      "type": "RegionPart",
+      "name": "ve-toilet-base",
+      "layer": 75
+    },
+    {
+      "type": "RegionPart",
+      "name": "ve-toilet-tank",
+      "layer": 75.4
+    }
+  ],
+  "groundLayer": 75,
+  "crushDamage": 2.5,
+  "hitSize": 35,
+  "deathSound": "none",
+  "useUnitCap": false,
+  "immunities": [ "blown","wet" ],
+  "deathExplosionEffect": {
+    "type": "SoundEffect",
+    "sound": "drBadExplosion",
+    "maxPitch": 1,
+    "minPitch": 1,
+    "maxVolume": 1,
+    "minVolume": 1,
+    "effect": {
+      "type": "SeqEffect",
+      "effects": [
+            {"type": "ParticleEffect",
+            "startDelay": 0, "region": "ve-dre1",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 3, "region": "ve-dre2",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 6, "region": "ve-dre3",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 9, "region": "ve-dre4",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 12, "region": "ve-dre5",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 15, "region": "ve-dre6",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 18, "region": "ve-dre7",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 21, "region": "ve-dre8",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 24, "region": "ve-dre9",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 27, "region": "ve-dre10",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 30, "region": "ve-dre11",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 33, "region": "ve-dre12",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 36, "region": "ve-dre13",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 39, "region": "ve-dre14",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 42, "region": "ve-dre15",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 45, "region": "ve-dre16",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120},
+            {"type": "ParticleEffect",
+            "startDelay": 48, "region": "ve-dre17",
+            "lifetime":3/*drel*/,"particles":1,"cone":0,"length":0,"baseLength":0,"colorFrom":"ffffff","colorTo":"ffffff","sizeFrom":55,"sizeTo":55,"useRotation":false,"layer":120}
+      ]
+    }
+  },
+  "health": 2147483247,
+  "armor": 7,
+  "faceTarget": false,
+  "targetable": false,
+  "canDrown": false,
+  "isEnemy": false,
+  "hidden": true,
+  "weapons": [
+    {  
+      "shoot": { "firstShotDelay": 180 },
+      "x": 0,
+      "shootY": 0,
+      "alwaysShooting": true,
+      "controllable": false,
+      "shootSound": "none",
+      "mirror": false,
+      "y": 5,
+      "shadow": 30,
+      "bullet": {
+        "instantDisappear": true,
+        "shootEffect": "none",
+        "smokeEffect": "none",
+        "hitEffect": "none",
+        "despawnEffect": "none",
+        "killShooter": true
+      },
+      "parts": [
+        {
+          "type": "RegionPart",
+          "name": "ve-bryde-flushed",
+          "layer": 75.1,
+          "y": 0,
+          "moves": [
+            {
+              "progress": {
+                "type": "charge",
+                "ops": [
+                  {
+                    "op": "curve",
+                    "interp": "pow5In"
+                  }
+                ]
+              },
+              "rot": -172800
+            },
+            {
+              "progress": {
+                "type": "charge",
+                "ops": [
+                  {
+                    "op": "compress",
+                    "start": 0.25,
+                    "end": 0.95
+                  }
+                ]
+              },
+              "gx": -1,
+              "gy": -1,
+              "y": -5
+            }
+          ],
+          "xScl": 1,
+          "yScl": 1
+        }
+      ]
+    }
+  ]
+}

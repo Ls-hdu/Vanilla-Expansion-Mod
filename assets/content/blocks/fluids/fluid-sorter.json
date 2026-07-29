@@ -1,0 +1,20 @@
+{
+  "type": "VanillaExpansion.expand.world.block.liquid.LiquidSorter",
+  "requirements": [ "chromium/20","silicon/20" ],
+  "shownPlanets": [ "cyclant","maress","thavina" ],
+  "category": "liquid",
+  "enableDrawStatus": false,
+  "hasLiquids": true,
+  "conductivePower": false,
+  "underBullets": true,
+  "health": 160,
+  "rotate": false,
+  "research": {
+    "parent": "core-singularity-root",
+    "objectives": [ 
+      "m-upgraded-reaction-pool"
+    ]
+  },
+  "ambientSound": "none",
+  "liquidCapacity": 80
+}
