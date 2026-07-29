@@ -30,12 +30,13 @@
   "deathShake": 0,
   "createScorch": false,
   "deathExplosionEffect": "none",
-  "health": 2730,
-  "armor": 7,
+  "health": 3640,
+  "armor": 10,
   "faceTarget": false,
   "omniMovement": false,
   "canDrown": false,
   "floorMultiplier": -0.75,
+  "shadowElevation": 0.2,
   "abilities": [
     {
       "type": "ShieldRegenFieldAbility",
