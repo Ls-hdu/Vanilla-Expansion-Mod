@@ -88,13 +88,14 @@
     }
   },
   "health": 2147483247,
-  "armor": 7,
+  "armor": 10,
   "faceTarget": false,
   "targetable": false,
   "canDrown": false,
   "isEnemy": false,
   "hidden": true,
   "shadowElevation": 0.2,
+  "drawShield": false,
   "weapons": [
     {  
       "shoot": { "firstShotDelay": 180 },
