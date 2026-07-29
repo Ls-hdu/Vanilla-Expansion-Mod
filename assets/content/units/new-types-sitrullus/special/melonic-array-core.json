@@ -121,11 +121,11 @@
             },
             {
               "type": "SoundEffect",
-              "maxVolume": 1,
-              "minVolume": 1,
-              "maxPitch": 1,
-              "minPitch": 1,
-              "sound": "si2Explode",
+              "maxVolume": 0.25,
+              "minVolume": 0.25,
+              "maxPitch": 1.1,
+              "minPitch": 0.9,
+              "sound": "blockExplodeElectric",
               "effect": {
                 "type": "ExplosionEffect",
                 "layer": 99.99,
@@ -155,6 +155,63 @@
             "interp": "circleIn",
             "lifetime": 600,
             "layer": 10
+            },
+
+            {
+              "type": "WaveEffect",
+              "colorFrom": "ffaaaa",
+              "colorTo": "ff5555",
+              "strokeFrom": 4,
+              "strokeTo": 0,
+              "interp": "pow2Out",
+              "sizeFrom": 0,
+              "sizeTo": 128,
+              "lifetime": 40
+            },
+            {
+              "type": "WaveEffect",
+              "colorFrom": "ffaaaa",
+              "colorTo": "ff555500",
+              "strokeFrom": 16,
+              "strokeTo": 4,
+              "interp": "pow2Out",
+              "sizeFrom": 0,
+              "sizeTo": 108,
+              "lifetime": 50
+            },
+            {
+              "type": "WaveEffect",
+              "colorFrom": "ffaaaa80",
+              "colorTo": "ff555500",
+              "strokeFrom": 32,
+              "strokeTo": 0,
+              "interp": "pow2Out",
+              "sizeFrom": 48,
+              "sizeTo": 48,
+              "lifetime": 30
+            },
+            {
+              "type": "WaveEffect",
+              "colorFrom": "ffffff80",
+              "colorTo": "ff555500",
+              "strokeFrom": 0,
+              "strokeTo": 16,
+              "interp": "pow2Out",
+              "sizeFrom": 96,
+              "sizeTo": 96,
+              "lifetime": 20
+            },
+            {
+              "type": "WaveEffect",
+              "colorFrom": "ffffff80",
+              "colorTo": "ff555500",
+              "strokeFrom": 16,
+              "strokeTo": 0,
+              "interp": "pow2Out",
+              "sizeFrom": 96,
+              "sizeTo": 96,
+              "lifetime": 20,
+              "startDelay": 20
             }
           ]
         },
@@ -174,7 +231,8 @@
             "colorTo": "ff555500",
             "interp": "circleIn",
             "lifetime": 30,
-            "layer": 105
+            "layer": 105,
+            "startDelay": 5
           },
           {
             "type": "ParticleEffect",
@@ -187,7 +245,8 @@
             "colorTo": "ff555540",
             "interp": "circleIn",
             "lifetime": 30,
-            "layer": 104.9
+            "layer": 104.9,
+            "startDelay": 5
           },
           {
             "type": "ParticleEffect",
@@ -201,10 +260,52 @@
             "colorTo": "ff555500",
             "interp": "circleIn",
             "lifetime": 30,
-            "layer": 104.8
+            "layer": 104.8,
+            "startDelay": 5
+          },
+
+          {
+            "type": "ParticleEffect",
+            "clip": 800,
+            "particles": 1,
+            "length": 0,
+            "sizeFrom": 0.25,
+            "sizeTo": 1,
+            "colorFrom": "ff555500",
+            "colorTo": "ffeeee",
+            "lifetime": 5,
+            "layer": 105,
+            "interp": "pow2Out"
+          },
+          {
+            "type": "ParticleEffect",
+            "clip": 800,
+            "particles": 1,
+            "length": 0,
+            "sizeFrom": 0,
+            "sizeTo": 6,
+            "colorFrom": "ff555540",
+            "colorTo": "ff555580",
+            "lifetime": 5,
+            "layer": 104.9,
+            "interp": "pow2Out"
+          },
+          {
+            "type": "ParticleEffect",
+            "clip": 800,
+            "region": "ve-circle-soft",
+            "particles": 1,
+            "length": 0,
+            "sizeFrom": 0,
+            "sizeTo": 16,
+            "colorFrom": "ff555500",
+            "colorTo": "ff555510",
+            "lifetime": 5,
+            "layer": 104.8,
+            "interp": "pow2Out"
           }
         ],
-        "trailSpacing": 1
+        "trailSpacing": 1,
         "damage": 1000,
         "pierceArmor": true,
         "status": "shocked",

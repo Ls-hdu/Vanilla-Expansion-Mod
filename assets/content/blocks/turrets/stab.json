@@ -192,6 +192,19 @@
             "sizeTo": 96,
             "lifetime": 20,
             "startDelay": 20
+          },
+          {
+            "type": "ParticleEffect",
+            "clip": 800,
+            "region": "ve-circle-soft",
+            "particles": 1,
+            "length": 0,
+            "sizeFrom": 192,
+            "sizeTo": 192,
+            "colorFrom": "ffffff88",
+            "colorTo": "ffffff00",
+            "lifetime": 15,
+            "layer": 120
           }
         ]
       },
