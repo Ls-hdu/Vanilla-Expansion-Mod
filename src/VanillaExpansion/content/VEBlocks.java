@@ -6,6 +6,7 @@ import VanillaExpansion.expand.world.block.distribution.MechanicalArm;
 import VanillaExpansion.expand.world.block.distribution.SideOutputConveyor;
 import VanillaExpansion.expand.world.block.liquid.AdaptLiquidBridge;
 import VanillaExpansion.expand.world.block.liquid.LiquidOverflowGate;
+import VanillaExpansion.expand.world.block.liquid.LiquidSorter;
 import VanillaExpansion.expand.world.block.liquid.Pipe;
 import VanillaExpansion.expand.world.block.liquid.SideOutputConduit;
 import VanillaExpansion.expand.world.block.optics.LaserEmitter;
@@ -47,6 +48,7 @@ public class VEBlocks {
     public static Block sideOutputConduit;
     public static Block liquidOverflowGate;
     public static Block liquidUnderflowGate;
+    public static Block liquidSorter;
     public static Block adaptLiquidBridge;
 
     // 16方向测试
@@ -124,15 +126,6 @@ public class VEBlocks {
             junctionReplacement = proximaJunction;
             bridgeReplacement = adaptItemBridge;
         }};
-        // 管道
-        pipe = new Pipe("pipe"){{
-            requirements(Category.liquid, ItemStack.with(
-                Items.copper, 10,
-                Items.lead, 5
-            ));
-            bridgeReplacement = adaptLiquidBridge;
-            junctionReplacement = proximaJunction;
-        }};
         // 侧向输出导管
         sideOutputConduit = new SideOutputConduit("side-output-conduit"){{
             requirements(Category.liquid, ItemStack.with(
@@ -163,6 +156,17 @@ public class VEBlocks {
             alwaysUnlocked = true;
             health = 45;
             invert = true;
+        }};
+        // 流体分类器
+        liquidSorter = new LiquidSorter("liquid-sorter"){{
+            requirements(Category.liquid, ItemStack.with(
+                Items.copper, 15,
+                Items.lead, 10
+            ));
+            buildVisibility = BuildVisibility.shown;
+            alwaysUnlocked = true;
+            health = 60;
+            rotate = false;
         }};
         overflow = new OverflowGate("proxima-overflow-gate"){{
             requirements(Category.distribution, ItemStack.with(
