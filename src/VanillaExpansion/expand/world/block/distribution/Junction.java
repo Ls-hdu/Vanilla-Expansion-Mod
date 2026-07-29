@@ -32,6 +32,14 @@ public class Junction extends Block{
     }
 
     @Override
+    public boolean canReplace(Block other){
+        if(other.alwaysReplace) return true;
+        if(other.privileged) return false;
+        return other.replaceable && (other != this || (rotate && quickRotate)) && ((this.group != BlockGroup.none && other.group == this.group) || other == this || other.group == BlockGroup.liquids) &&
+            (size == other.size || (size >= other.size && ((subclass != null && subclass == other.subclass) || group.anyReplace)));
+    }
+
+    @Override
     public void setStats(){
         super.setStats();
 
@@ -53,6 +61,11 @@ public class Junction extends Block{
         public float[] sideHeat = new float[4];
         public IntSet cameFrom = new IntSet();
         public long lastHeatUpdate = -1;
+
+        @Override
+        public boolean canBeReplaced(Block other){
+            return super.canBeReplaced(other) || other.group == BlockGroup.liquids;
+        }
 
         @Override
         public int acceptStack(Item item, int amount, Teamc source){

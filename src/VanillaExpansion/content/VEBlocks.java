@@ -109,13 +109,6 @@ public class VEBlocks {
                 Items.lead, 10
             ));
         }};
-        proximaJunctionLiquid = new Junction("proxima-junction-liquid"){{
-            requirements(Category.liquid, ItemStack.with(
-                Items.copper, 15,
-                Items.lead, 10
-            ));
-            group = BlockGroup.liquids;
-        }};
         // 高速侧输出传送带
         fastSideOutputConveyor = new SideOutputConveyor("fast-side-output-conveyor"){{
             speed = 0.15f;
@@ -144,7 +137,7 @@ public class VEBlocks {
                 Items.lead, 10
             ));
             bridgeReplacement = adaptLiquidBridge;
-            junctionReplacement = proximaJunctionLiquid;
+            junctionReplacement = proximaJunction;
         }};
         overflow = new OverflowGate("proxima-overflow-gate"){{
             requirements(Category.distribution, ItemStack.with(

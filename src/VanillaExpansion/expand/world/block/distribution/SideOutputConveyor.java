@@ -1,5 +1,6 @@
 package VanillaExpansion.expand.world.block.distribution;
 
+import VanillaExpansion.expand.world.block.liquid.SideOutputConduit;
 import arc.func.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -35,8 +36,9 @@ public class SideOutputConveyor extends Conveyor{
     public void handlePlacementLine(Seq<BuildPlan> plans){
         if(bridgeReplacement == null) return;
         boolean hasJuntionReplacement = junctionReplacement != null;
-        if(bridgeReplacement instanceof DuctBridge bridge) Placement.calculateBridges(plans, bridge, hasJuntionReplacement, b -> b instanceof Duct || b instanceof SideOutputConveyor);
-        if(bridgeReplacement instanceof ItemBridge bridge) Placement.calculateBridges(plans, bridge, hasJuntionReplacement, b -> b instanceof SideOutputConveyor);
+        Boolf<Block> avoidBlock = b -> b instanceof SideOutputConveyor || b instanceof SideOutputConduit;
+        if(bridgeReplacement instanceof DuctBridge bridge) Placement.calculateBridges(plans, bridge, hasJuntionReplacement, b -> b instanceof Duct || avoidBlock.get(b));
+        if(bridgeReplacement instanceof ItemBridge bridge) Placement.calculateBridges(plans, bridge, hasJuntionReplacement, avoidBlock);
     }
 
     @Override
@@ -44,11 +46,20 @@ public class SideOutputConveyor extends Conveyor{
         if(junctionReplacement == null) return this;
 
         Boolf<Point2> cont = p -> plans.contains(o -> o.x == req.x + p.x && o.y == req.y + p.y && (req.block instanceof SideOutputConveyor || req.block instanceof Junction));
-        return cont.get(Geometry.d4(req.rotation)) &&
+        if(cont.get(Geometry.d4(req.rotation)) &&
             cont.get(Geometry.d4(req.rotation - 2)) &&
             req.tile() != null &&
             req.tile().block() instanceof SideOutputConveyor &&
-            Mathf.mod(req.tile().build.rotation - req.rotation, 2) == 1 ? junctionReplacement : this;
+            Mathf.mod(req.tile().build.rotation - req.rotation, 2) == 1) return junctionReplacement;
+
+        if(req.tile() != null && req.tile().block() instanceof SideOutputConduit &&
+            Mathf.mod(req.tile().build.rotation - req.rotation, 2) == 1){
+            Boolf<Point2> lineCont = p -> plans.contains(o -> o.x == req.x + p.x && o.y == req.y + p.y);
+            if(lineCont.get(Geometry.d4(req.rotation)) && lineCont.get(Geometry.d4(req.rotation - 2))){
+                return junctionReplacement;
+            }
+        }
+        return this;
     }
 
     public class ConveyorBuild extends Building implements ChainedBuilding {

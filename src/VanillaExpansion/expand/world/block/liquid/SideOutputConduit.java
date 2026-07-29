@@ -1,5 +1,6 @@
 package VanillaExpansion.expand.world.block.liquid;
 
+import VanillaExpansion.expand.world.block.distribution.SideOutputConveyor;
 import arc.func.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -53,11 +54,20 @@ public class SideOutputConduit extends Conduit {
         if (junctionReplacement == null) return this;
 
         Boolf<Point2> cont = p -> plans.contains(o -> o.x == req.x + p.x && o.y == req.y + p.y && (req.block instanceof SideOutputConduit || req.block instanceof LiquidJunction));
-        return cont.get(Geometry.d4(req.rotation)) &&
+        if (cont.get(Geometry.d4(req.rotation)) &&
             cont.get(Geometry.d4(req.rotation - 2)) &&
             req.tile() != null &&
             req.tile().block() instanceof SideOutputConduit &&
-            Mathf.mod(req.tile().build.rotation - req.rotation, 2) == 1 ? junctionReplacement : this;
+            Mathf.mod(req.tile().build.rotation - req.rotation, 2) == 1) return junctionReplacement;
+
+        if (req.tile() != null && req.tile().block() instanceof SideOutputConveyor &&
+            Mathf.mod(req.tile().build.rotation - req.rotation, 2) == 1) {
+            Boolf<Point2> lineCont = p -> plans.contains(o -> o.x == req.x + p.x && o.y == req.y + p.y);
+            if (lineCont.get(Geometry.d4(req.rotation)) && lineCont.get(Geometry.d4(req.rotation - 2))) {
+                return junctionReplacement;
+            }
+        }
+        return this;
     }
 
     @Override
@@ -66,7 +76,7 @@ public class SideOutputConduit extends Conduit {
 
         boolean hasJunctionReplacement = junctionReplacement != null;
         if (bridgeReplacement instanceof ItemBridge bridge) {
-            Placement.calculateBridges(plans, bridge, hasJunctionReplacement, b -> b instanceof SideOutputConduit);
+            Placement.calculateBridges(plans, bridge, hasJunctionReplacement, b -> b instanceof SideOutputConduit || b instanceof SideOutputConveyor);
         }
     }
 
