@@ -5,6 +5,7 @@ import VanillaExpansion.expand.world.block.distribution.Junction;
 import VanillaExpansion.expand.world.block.distribution.MechanicalArm;
 import VanillaExpansion.expand.world.block.distribution.SideOutputConveyor;
 import VanillaExpansion.expand.world.block.liquid.AdaptLiquidBridge;
+import VanillaExpansion.expand.world.block.liquid.LiquidOverflowGate;
 import VanillaExpansion.expand.world.block.liquid.Pipe;
 import VanillaExpansion.expand.world.block.liquid.SideOutputConduit;
 import VanillaExpansion.expand.world.block.optics.LaserEmitter;
@@ -44,6 +45,8 @@ public class VEBlocks {
     //i say 神TM的流体
     public static Block pipe;
     public static Block sideOutputConduit;
+    public static Block liquidOverflowGate;
+    public static Block liquidUnderflowGate;
     public static Block adaptLiquidBridge;
 
     // 16方向测试
@@ -138,6 +141,28 @@ public class VEBlocks {
             ));
             bridgeReplacement = adaptLiquidBridge;
             junctionReplacement = proximaJunction;
+        }};
+        // 流体溢流门
+        liquidOverflowGate = new LiquidOverflowGate("liquid-overflow-gate"){{
+            requirements(Category.liquid, ItemStack.with(
+                Items.copper, 10,
+                Items.lead, 5
+            ));
+            buildVisibility = BuildVisibility.shown;
+            alwaysUnlocked = true;
+            health = 45;
+            invert = false;
+        }};
+        // 流体反向溢流门
+        liquidUnderflowGate = new LiquidOverflowGate("liquid-underflow-gate"){{
+            requirements(Category.liquid, ItemStack.with(
+                Items.copper, 10,
+                Items.lead, 5
+            ));
+            buildVisibility = BuildVisibility.shown;
+            alwaysUnlocked = true;
+            health = 45;
+            invert = true;
         }};
         overflow = new OverflowGate("proxima-overflow-gate"){{
             requirements(Category.distribution, ItemStack.with(
