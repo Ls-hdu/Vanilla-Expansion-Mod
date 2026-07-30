@@ -535,7 +535,9 @@ public class PowerPole extends PowerBlock {
                 Draw.color(Pal.accent);
                 Drawf.circles(lx, ly, 4f);
                 Draw.color(Color.white);
-                Fonts.outline.draw(String.valueOf(i + 1), lx - 3, ly + 5);
+                Fonts.outline.getData().setScale(1f / 6f);
+                Fonts.outline.draw(String.valueOf(i + 1), lx, ly);
+                Fonts.outline.getData().setScale(1f);
             }
             Draw.reset();
         }
@@ -567,7 +569,9 @@ public class PowerPole extends PowerBlock {
                 Draw.color(Pal.place);
                 Drawf.circles(lx, ly, 5f);
                 Draw.color(Color.white);
-                Fonts.outline.draw(String.valueOf(i + 1), lx - 3, ly + 5);
+                Fonts.outline.getData().setScale(1f / 6f);
+                Fonts.outline.draw(String.valueOf(i + 1), lx, ly);
+                Fonts.outline.getData().setScale(1f);
             }
             Draw.reset();
         }
