@@ -422,6 +422,7 @@ newBlock("stellar",PowerTurret)
 
 //units
 log("32");
+newBlock("light-refabricator",Reconstructor);
 newBlock("gigantic-payload-conveyor",PayloadConveyor);
 newBlock("world-payload-conveyor",PayloadConveyor);
 

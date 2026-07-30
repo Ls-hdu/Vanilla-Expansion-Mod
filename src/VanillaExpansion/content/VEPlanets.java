@@ -1,13 +1,22 @@
 package VanillaExpansion.content;
 
+import VanillaExpansion.VESounds;
 import VanillaExpansion.expand.graphics.AsteroidBeltMesh;
+import VanillaExpansion.expand.graphics.MagneticFluxMesh;
+import VanillaExpansion.expand.graphics.NeutronJetBeamMesh;
+import VanillaExpansion.expand.graphics.NeutronJetParticleMesh;
+import VanillaExpansion.expand.graphics.NeutronJetSpinBeam;
+import VanillaExpansion.expand.graphics.RotatingMesh;
 import VanillaExpansion.expand.graphics.ZAxisSkyMesh;
+import VanillaExpansion.expand.maps.NeutronStarPlanetGenerator;
 import VanillaExpansion.expand.maps.ProximaPlanetGenerator;
 import arc.graphics.Color;
 import mindustry.Vars;
-import mindustry.content.Blocks;
+import mindustry.content.Planets;
 import mindustry.graphics.g3d.*;
+import mindustry.graphics.g3d.PlanetGrid.Ptile;
 import mindustry.type.Planet;
+import mindustry.type.Sector;
 import mindustry.world.meta.Attribute;
 import mindustry.world.meta.Env;
 
@@ -21,78 +30,88 @@ import static mindustry.gen.Musics.game8;
 public class VEPlanets {
 
     /** 星球实例 */
-    public static Planet proxima;
-
+    public static Planet proxima, neutronStar;
     /** 加载行星定义 */
     public static void load() {
-        Planet sol4b = content.planet("ve-sol4b");
-        proxima = new Planet("proxima", sol4b, 1f, 3) {{
-            // 设置生成器
-            generator = new ProximaPlanetGenerator();
-
-            // I GOT ANNOYED
+        neutronStar = new Planet("sol4b", Planets.sun, 0.9f, 0) {{
+            generator = new NeutronStarPlanetGenerator();
+            meshLoader = () -> new RotatingMesh(new MultiMesh(new GenericMesh[]{
+                new SunMesh(this, 8, 5d, 0.3d, 3d, 1.2d, 0.8d, 1.1f, new Color[]{Color.valueOf("88bbff"), Color.valueOf("88ddff"), Color.valueOf("aaccff"), Color.valueOf("ccddff"), Color.valueOf("eeeeff"), Color.valueOf("ffffff")}),
+                new MagneticFluxMesh(this)
+            }), 720f);
+            cloudMeshLoader = () -> new MultiMesh(
+                new NeutronJetParticleMesh(this, 400),
+                new NeutronJetBeamMesh(this, 6f, 0.4f, 0.15f){{
+                    drawSector = true;
+                    sectorTilt = 15f;
+                    sectorAngle = 5f;
+                    sectorLength = 27f;
+                    sectorColor = Color.valueOf("87CEEB");
+                    sectorAlpha = 0.3f;
+                }},
+                new NeutronJetSpinBeam(this, 27f, 0.3f, 0.15f)
+            );
             visible = true;
             accessible = false;
-            
-            // 设置网格加载器（六边形网格）
+            hasAtmosphere = true;
+            bloom = true;
+            alwaysUnlocked = true;
+            iconColor = Color.valueOf("88bbff");
+            atmosphereColor = Color.valueOf("8844ff");
+            atmosphereRadIn = 0.1f;
+            atmosphereRadOut = 0.8f;
+            rotateTime = 0.5f;
+            orbitRadius = 2000f;
+            orbitOffset = 180f;
+            camRadius = 1.8f;
+            clipRadius = 1.5f;
+            startSector = 0;
+            ruleSetter = r -> {
+                r.waves = false;
+            };
+            allowWaves = false;
+            allowSectorInvasion = false;
+            allowLaunchToNumbered = false;
+            allowLaunchSchematics = false;
+            allowLaunchLoadout = false;
+            allowLegacyLaunchPads = false;
+        }};
+        neutronStar.solarSystem = neutronStar;
+
+        proxima = new Planet("proxima", neutronStar, 1f, 3) {{
+            generator = new ProximaPlanetGenerator();
+            visible = true;
+            accessible = false;
             meshLoader = () -> new HexMesh(this, 6);
-            
-            // 设置云层加载器（大气层效果）- 使用Z轴旋转，添加小行星带
             cloudMeshLoader = () -> new MultiMesh(
-                // 小行星带 - 由大量不规则小行星组成
                 new AsteroidBeltMesh(this, 2.5f, 4.5f, 150, 729, Color.valueOf("6a6a6a")),
-                // 内层云层 - 白色
                 new ZAxisSkyMesh(this, 2, 0.3f, 0.14f, 5, Color.valueOf("87CEEB").a(0.75f), 2, 0.42f, 1f, 0.43f),
-                // 外层云层 - 白色
                 new ZAxisSkyMesh(this, 3, 0.8f, 0.15f, 5, Color.valueOf("87CEEB").a(0.65f), 2, 0.42f, 1.2f, 0.45f)
             );
-            
-            // 直接设置轨道半径（星球到太阳的距离）
-            orbitRadius = 45f;
-            
-            // 设置轨道偏移角度，使行星正对太阳（角度0表示向右，正对太阳）
+            orbitRadius = 65f;
             orbitOffset = 0f;
-            
-            // 设置潮汐锁定为true，行星始终面向太阳
             tidalLock = true;
-            
-            // 设置基本属性
-            iconColor = Color.valueOf("87CEEB"); // 淡蓝色，符合冰原主题
-            atmosphereColor = Color.valueOf("4A90A4"); // 天蓝色大气
+            iconColor = Color.valueOf("87CEEB");
+            atmosphereColor = Color.valueOf("4A90A4");
             atmosphereRadIn = 0.02f;
             atmosphereRadOut = 0.3f;
             hasAtmosphere = true;
-            
-            // 设置起始扇区
             startSector = 170;
-            
-            // 设置解锁状态
             alwaysUnlocked = true;
-            
-            // 设置环境属性
             defaultEnv = mindustry.world.meta.Env.terrestrial;
-            
-            // 设置默认核心
-            
-            // 设置规则
             ruleSetter = r -> {
                 r.waveTeam = mindustry.game.Team.crux;
                 r.placeRangeCheck = false;
                 r.coreDestroyClear = true;
             };
-            
-            // 允许各种功能
             allowWaves = true;
             allowLegacyLaunchPads = true;
             allowSectorInvasion = true;
             allowLaunchSchematics = true;
             enemyCoreSpawnReplace = true;
             allowLaunchLoadout = true;
-            
-            // 设置颜色主题
             landCloudColor = Color.valueOf("87CEEB").a(0.5f);
         }};
-        sol4b.children.add(proxima);
-        proxima.solarSystem = sol4b;
+        proxima.solarSystem = neutronStar;
     }
 }

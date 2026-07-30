@@ -12,6 +12,8 @@ import VanillaExpansion.*;
 
 import static mindustry.Vars.*;
 
+// Neutron star rendering library — see ns/ package for full implementation
+
 public class VEShaders {
     public static HarshShadowShader harshShadow;
     public static AlphaCut alphaCut;

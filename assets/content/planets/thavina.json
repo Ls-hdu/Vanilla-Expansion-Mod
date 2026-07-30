@@ -9,7 +9,7 @@
   "orbitTime": 124,//120,21333  k(thavina)＝52k(phoon)
   "rotateTime": 124,*/
   /*60*/
-  "orbitRadius": 90,
+  "orbitRadius": 40,
   "orbitTime": 12000,
   "rotateTime": 600,
   "hasAtmosphere": true,

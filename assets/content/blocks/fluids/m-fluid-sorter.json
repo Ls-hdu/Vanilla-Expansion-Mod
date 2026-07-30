@@ -1,8 +1,9 @@
 {
   "type": "VanillaExpansion.MultiCrafter",
   "requirements": [ "chromium/20","silicon/20" ],
-  "shownPlanets": [ "cyclant","maress","thavina" ],
+  "shownPlanets": [],
   "category": "liquid",
+  "buildVisibility": "editorOnly",
   "recipe": [
     {
       "inputLiquids": [ "water/1" ]
@@ -98,12 +99,6 @@
   "conductivePower": false,
   "underBullets": true,
   "health": 160,
-  "research": {
-    "parent": "core-singularity-root",
-    "objectives": [ 
-      "m-upgraded-reaction-pool"
-    ]
-  },
   "ambientSound": "none",
   "liquidCapacity": 80,
   "drawer": {
@@ -145,7 +140,14 @@
         "type": "DrawLiquidTile",
         "drawLiquid": "dysharmony-fluid"
       },
-      { "type": "DrawDefault" }
+      {
+        "type": "DrawRegion",
+        "name": "ve-fluid-sorter"
+      },
+      {
+        "type": "DrawRegion",
+        "name": "ve-fluid-sorter-top"
+      }
     ]
   }
 }

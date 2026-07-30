@@ -1,17 +1,22 @@
 package VanillaExpansion.expand.world.block.liquid;
 
 import arc.*;
+import arc.func.*;
 import arc.graphics.g2d.*;
+import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
 import VanillaExpansion.expand.input.*;
 import mindustry.*;
+import mindustry.content.*;
 import mindustry.entities.units.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.*;
+import mindustry.world.blocks.distribution.ItemBridge;
+import mindustry.world.blocks.liquid.LiquidJunction;
 
 public class Pipe extends MergingLiquidBlock implements Autotiler {
 
@@ -31,12 +36,20 @@ public class Pipe extends MergingLiquidBlock implements Autotiler {
 
     public TextureRegion[][][] rotateRegions;
 
+    public @Nullable Block junctionReplacement;
     public Block bridgeReplacement;
 
     public Pipe(String name) {
         super(name);
         solid = false;
         conveyorPlacement = true;
+    }
+
+    @Override
+    public void init(){
+        super.init();
+        if(junctionReplacement == null) junctionReplacement = Blocks.liquidJunction;
+        if(bridgeReplacement == null || !(bridgeReplacement instanceof ItemBridge)) bridgeReplacement = Blocks.bridgeConduit;
     }
 
     @Override
@@ -137,6 +150,18 @@ public class Pipe extends MergingLiquidBlock implements Autotiler {
         Drawf.liquid(liquidr, x + ox, y + oy, fullness, liquid.color.write(Tmp.c1).a(1f));
 
         Draw.rect(regions[index1][index2], x, y);
+    }
+
+    @Override
+    public Block getReplacement(BuildPlan req, Seq<BuildPlan> plans){
+        if(junctionReplacement == null) return this;
+
+        Boolf<Point2> cont = p -> plans.contains(o -> o.x == req.x + p.x && o.y == req.y + p.y && (req.block instanceof Pipe || req.block instanceof LiquidJunction));
+        return cont.get(Geometry.d4(req.rotation)) &&
+            cont.get(Geometry.d4(req.rotation - 2)) &&
+            req.tile() != null &&
+            req.tile().block() instanceof Pipe &&
+            Mathf.mod(req.tile().build.rotation - req.rotation, 2) == 1 ? junctionReplacement : this;
     }
 
     @Override

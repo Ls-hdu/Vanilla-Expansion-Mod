@@ -8,6 +8,10 @@
       {
         "type": "SectorComplete",
         "preset": "volcanic-top"
+      },
+      {
+        "type": "OnSector",
+        "preset": "community-entrance"
       }
     ]
   },

@@ -1,5 +1,6 @@
 package VanillaExpansion.expand.world.block.distribution;
 
+import VanillaExpansion.expand.world.block.liquid.SideOutputConduit;
 import arc.func.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -7,7 +8,6 @@ import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
-import VanillaExpansion.annotations.Annotations.*;
 import mindustry.content.*;
 import mindustry.ctype.*;
 import mindustry.entities.*;
@@ -24,89 +24,21 @@ import mindustry.world.meta.*;
 
 import static mindustry.Vars.*;
 
-public class SideOutputConveyor extends Block implements Autotiler{
+public class SideOutputConveyor extends Conveyor{
     private static final float itemSpace = 0.4f;
     private static final int capacity = 3;
 
-    public @Load(value = "@-#1-#2", lengths = {7, 4}) TextureRegion[][] regions;
-
-    public float speed = 0f;
-    public float displayedSpeed = 0f;
-    public boolean pushUnits = true;
-
-    public @Nullable Block junctionReplacement, bridgeReplacement;
-
     public SideOutputConveyor(String name){
         super(name);
-        rotate = true;
-        update = true;
-        group = BlockGroup.transportation;
-        hasItems = true;
-        itemCapacity = capacity;
-        priority = TargetPriority.transport;
-        conveyorPlacement = true;
-        underBullets = true;
-
-        ambientSound = Sounds.loopConveyor;
-        ambientSoundVolume = 0.0022f;
-        unloadable = false;
-        noUpdateDisabled = false;
-    }
-
-    @Override
-    public void setStats(){
-        super.setStats();
-
-        //have to add a custom calculated speed, since the actual movement speed is apparently not linear
-        stats.add(Stat.itemsMoved, displayedSpeed, StatUnit.itemsSecond);
-    }
-
-    @Override
-    public void init(){
-        super.init();
-
-        if(junctionReplacement == null) junctionReplacement = Blocks.junction;
-        if(bridgeReplacement == null || !(bridgeReplacement instanceof ItemBridge || bridgeReplacement instanceof DuctBridge)) bridgeReplacement = Blocks.itemBridge;
-    }
-
-    @Override
-    public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list){
-        int[] bits = getTiling(plan, list);
-
-        if(bits == null || regions == null) return;
-
-        TextureRegion region = regions[bits[0]][0];
-        Draw.rect(region, plan.drawx(), plan.drawy(), region.width * bits[1] * region.scl(), region.height * bits[2] * region.scl(), plan.rotation * 90);
-    }
-
-    @Override
-    public boolean blends(Tile tile, int rotation, int otherx, int othery, int otherrot, Block otherblock){
-        return (otherblock.outputsItems() || (lookingAt(tile, rotation, otherx, othery, otherblock) && otherblock.hasItems))
-            && lookingAtEither(tile, rotation, otherx, othery, otherrot, otherblock);
-    }
-
-    //stack conveyors should be bridged over, not replaced
-    @Override
-    public boolean canReplace(Block other){
-        return super.canReplace(other) && !(other instanceof StackConveyor);
     }
 
     @Override
     public void handlePlacementLine(Seq<BuildPlan> plans){
         if(bridgeReplacement == null) return;
         boolean hasJuntionReplacement = junctionReplacement != null;
-        if(bridgeReplacement instanceof DuctBridge bridge) Placement.calculateBridges(plans, bridge, hasJuntionReplacement, b -> b instanceof Duct || b instanceof SideOutputConveyor);
-        if(bridgeReplacement instanceof ItemBridge bridge) Placement.calculateBridges(plans, bridge, hasJuntionReplacement, b -> b instanceof SideOutputConveyor);
-    }
-
-    @Override
-    public TextureRegion[] icons(){
-        return regions == null ? super.icons() : new TextureRegion[]{regions[0][0]};
-    }
-
-    @Override
-    public boolean isAccessible(){
-        return true;
+        Boolf<Block> avoidBlock = b -> b instanceof SideOutputConveyor || b instanceof SideOutputConduit;
+        if(bridgeReplacement instanceof DuctBridge bridge) Placement.calculateBridges(plans, bridge, hasJuntionReplacement, b -> b instanceof Duct || avoidBlock.get(b));
+        if(bridgeReplacement instanceof ItemBridge bridge) Placement.calculateBridges(plans, bridge, hasJuntionReplacement, avoidBlock);
     }
 
     @Override
@@ -114,11 +46,20 @@ public class SideOutputConveyor extends Block implements Autotiler{
         if(junctionReplacement == null) return this;
 
         Boolf<Point2> cont = p -> plans.contains(o -> o.x == req.x + p.x && o.y == req.y + p.y && (req.block instanceof SideOutputConveyor || req.block instanceof Junction));
-        return cont.get(Geometry.d4(req.rotation)) &&
+        if(cont.get(Geometry.d4(req.rotation)) &&
             cont.get(Geometry.d4(req.rotation - 2)) &&
             req.tile() != null &&
             req.tile().block() instanceof SideOutputConveyor &&
-            Mathf.mod(req.tile().build.rotation - req.rotation, 2) == 1 ? junctionReplacement : this;
+            Mathf.mod(req.tile().build.rotation - req.rotation, 2) == 1) return junctionReplacement;
+
+        if(req.tile() != null && req.tile().block() instanceof SideOutputConduit &&
+            Mathf.mod(req.tile().build.rotation - req.rotation, 2) == 1){
+            Boolf<Point2> lineCont = p -> plans.contains(o -> o.x == req.x + p.x && o.y == req.y + p.y);
+            if(lineCont.get(Geometry.d4(req.rotation)) && lineCont.get(Geometry.d4(req.rotation - 2))){
+                return junctionReplacement;
+            }
+        }
+        return this;
     }
 
     public class ConveyorBuild extends Building implements ChainedBuilding {

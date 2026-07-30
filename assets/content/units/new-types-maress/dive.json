@@ -36,7 +36,7 @@
       "particleSize": 2.75,
       "particleColor": "8ca9e850",
       "effectColor": "8ca9e8"
-    },
+    }
   ],
   "range": 308,
   "weapons": [
@@ -59,7 +59,7 @@
       "shoot": {
         "shots": 3,
         "shotDelay": 5
-      }
+      },
       "bullet": {
         "sprite": "circle-bullet",
         "width": 7,
@@ -71,7 +71,7 @@
         "trailEffect": "missileTrailShort",
         "hitColor": "8ca9e8",
         "despawnEffect": "hitLaserBlast",
-        "despawnSound": [ "lbp3PlasmDestroy1","lbp3PlasmDestroy2","lbp3PlasmDestroy3" ],
+        "despawnSound": [ "rlElectricBallDespawn1","rlElectricBallDespawn1" ],
         "hitEffect": "hitBulletColor",
         "fragBullets": 1,
         "fragRandomSpread": 180,
@@ -99,7 +99,6 @@
         "fragVelocityMin": 0.5,
         "fragLifeMin": 0.5,
         "shootEffect": "colorSpark",
-        "hitColor": "8ca9e8",
         "smokeEffect": "none",
         "fragBullet": {
           "frontColor": "ffffff",
@@ -133,14 +132,13 @@
           "despawnHit": true,
           "despawnEffect": "none",
           "hitEffect": "hitLaserBlast",
-          "despawnSound": "shootArc",
+          "despawnSound": [ "rlElectricBallDespawn1","rlElectricBallDespawn1" ],
           "hitSound": "rlElectricBallHit",
           "despawnShake": 2,
           "lightning": 3,
           "lightningLength": 7,
           "lightningDamage": 18,
-          "lightningColor": "8ca9e8",
-          "hitSound": "shockBullet"
+          "lightningColor": "8ca9e8"
         }
       }
     },

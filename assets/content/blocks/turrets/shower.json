@@ -4,6 +4,7 @@
   "category": "turret",
   "size": 4,
   "outlineColor": "2d2f39",
+  "buildVisibility": "editorOnly",
   "ammoTypes": {
     "thorium": {
       "ammoMultiplier": 1,
@@ -274,7 +275,7 @@
       }
     ]
   },
-  "research": {
+  /*"research": {
     "parent": "burst",
     "objectives": [ 
       {
@@ -282,7 +283,7 @@
         "preset": "slate-guardpost"
       }
     ]
-  },
+  },*/
   "researchCostMultiplier": 0.1,
   "coolantMultiplier": 1,
   "consumes": {
