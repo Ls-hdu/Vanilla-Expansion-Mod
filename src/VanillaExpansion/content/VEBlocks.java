@@ -56,6 +56,8 @@ public class VEBlocks {
 
     // 16方向测试
     public static Block test16Dir;
+    // 电线杆
+    public static Block powerPole;
     //钻头
     public static Block rockCoreDrill;
 
@@ -215,6 +217,17 @@ public class VEBlocks {
             health = 200;
             instantBuild = true;
             quickRotate = false;
+        }};
+        // 电线杆
+        powerPole = new PowerPole("power-pole"){{
+            requirements(Category.power, ItemStack.with(
+                VEItems.iron, 5,
+                VEItems.manganese, 5
+            ));
+            buildVisibility = BuildVisibility.shown;
+            alwaysUnlocked = true;
+            size = 1;
+            health = 120;
         }};
         // 岩芯钻机
         rockCoreDrill = new RockCoreDrill("rock-core-drill"){{
