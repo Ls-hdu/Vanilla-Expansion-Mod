@@ -8,6 +8,7 @@ import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
+import mindustry.Vars;
 import mindustry.core.Renderer;
 import mindustry.entities.units.*;
 import mindustry.game.Team;
@@ -124,11 +125,17 @@ public class PowerPole extends PowerBlock {
     @Override
     public void init() {
         super.init();
+        clipSize = Math.max(clipSize, laserRange * tilesize);
+    }
+
+    @Override
+    public void load() {
+        super.load();
+        if (Vars.headless) return;
         TextureRegion fallbackLaser = Core.atlas.find("laser");
         TextureRegion fallbackEnd = Core.atlas.find("laser-end");
         laser = Core.atlas.find(name + "-laser", fallbackLaser);
         laserEnd = Core.atlas.find(name + "-laser-end", fallbackEnd);
-        clipSize = Math.max(clipSize, laserRange * tilesize);
     }
 
     @Override

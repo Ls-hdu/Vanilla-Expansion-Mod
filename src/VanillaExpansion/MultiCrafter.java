@@ -291,7 +291,7 @@ public class MultiCrafter extends HeatCrafter {
         }
 
 
-        for (Recipe r : recipes) if (r.visual != null) r.visual.load(this);
+        if (!Vars.headless) for (Recipe r : recipes) if (r.visual != null) r.visual.load(this);
 
         boolean hasUnitOutput = recipes.contains(r -> {
             for (PayloadStack stack : r.cachedOutputPayloads)
