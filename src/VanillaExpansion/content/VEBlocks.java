@@ -226,7 +226,7 @@ public class VEBlocks {
             ));
             buildVisibility = BuildVisibility.shown;
             alwaysUnlocked = true;
-            size = 1;
+            size = 2;
             health = 120;
         }};
         // 岩芯钻机
