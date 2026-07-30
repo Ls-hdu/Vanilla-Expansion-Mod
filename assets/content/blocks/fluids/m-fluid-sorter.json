@@ -3,7 +3,7 @@
   "requirements": [ "chromium/20","silicon/20" ],
   "shownPlanets": [],
   "category": "liquid",
-  "buildVisibility": "hidden",
+  "buildVisibility": "editorOnly",
   "recipe": [
     {
       "inputLiquids": [ "water/1" ]
