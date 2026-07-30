@@ -19,8 +19,8 @@ Team.green.ignoreUnitCap = true;
 Team.green.name = "lacuna";
 */
 Planets.tantros.visible = true;
-require("blocks");
-log("endblocks");
+//require("blocks");
+//log("endblocks");
 require("sectors");
 log("endsectors");
 require("team2");

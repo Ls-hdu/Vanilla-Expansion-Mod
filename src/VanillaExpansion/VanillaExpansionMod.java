@@ -17,6 +17,8 @@ public class VanillaExpansionMod extends Mod {
     public static MultiCrafterPayloadFragment payloadFragment;
     @Override
     public void init() {
+        ContentOrderGuard.init();
+
         // 替换输入处理器（仅客户端）
         Events.on(EventType.ClientLoadEvent.class, e -> {
             control.setInput(new VEInputHandler());
@@ -50,6 +52,7 @@ public class VanillaExpansionMod extends Mod {
         VanillaExpansion.content.VEItems.load();
         ////VanillaExpansion.content.VELiquids.load();
         //VanillaExpansion.content.VEUnitTypes.load();
+        VanillaExpansion.content.VEJSBlocks.load();
         VanillaExpansion.content.VEBlocks.load();
         VanillaExpansion.content.VEPlanets.load();
         VanillaExpansion.content.CustomFx.load();

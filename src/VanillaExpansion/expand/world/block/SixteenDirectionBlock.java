@@ -8,6 +8,7 @@ import arc.math.*;
 import arc.math.geom.*;
 import arc.util.*;
 import arc.util.io.*;
+import mindustry.Vars;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
 import mindustry.logic.*;
@@ -112,11 +113,11 @@ public class SixteenDirectionBlock extends Block implements Autotiler {
 
     @Override
     public int planRotation(int rot) {
+        if (Vars.headless || Core.input == null) return rot;
         int cx = Mathf.round(Core.input.mouseWorld().x / tilesize);
         int cy = Mathf.round(Core.input.mouseWorld().y / tilesize);
         Tile tile = world.tile(cx, cy);
         if (tile != null && tile.build != null && tile.build.block == this && tile.team() == player.team() && rot == tile.build.rotation) {
-            // 16方向专属：同 config 才禁建，不同 config 才绕开
             if (tile.build instanceof SixteenDirectionBuild sdBuild) {
                 if (sdBuild.getFullRotation() != getCurrentFullDir()) {
                     return (rot + 1) % 4;
