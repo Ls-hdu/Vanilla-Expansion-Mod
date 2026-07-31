@@ -239,6 +239,7 @@ public class VEBlocks {
             tier = 3;
             drillTime = 1120f;      // 单个钻头挖掘时间
             warmupSpeed = 0.015f;
+            alwaysUnlocked = true;
 
             // 定义4个钻孔的偏移坐标（相对于方块中心，单位：像素）
             // size=2时，方块大小为64x64像素，中心点偏移4像素到四个象限
