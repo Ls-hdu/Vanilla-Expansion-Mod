@@ -22,6 +22,7 @@ public class VEItems {
         iron = new Item("iron", Color.valueOf("a8a8a8")){{
             hardness = 2;
             cost = 0.8f;
+            databaseTag = "basic-item";
         }};
         
         uranium = new Item("uranium", Color.valueOf("7fff00")){{
@@ -30,17 +31,20 @@ public class VEItems {
             radioactivity = 1.2f;
             explosiveness = 0.3f;
             healthScaling = 0.15f;
+            databaseTag = "basic-item";
         }};
         
         manganese = new Item("manganese", Color.valueOf("E35745FF")){{
             hardness = 4;
             cost = 1.3f;
             healthScaling = 0.7f;
+            databaseTag = "basic-item";
         }};
 
         gold = new Item("gold", Color.valueOf("ffd37f")){{
             hardness = 2;
             cost = 1.0f;
+            databaseTag = "basic-item";
         }};
         
         proximaOreItems.addAll(iron, uranium, manganese, gold);
@@ -56,6 +60,7 @@ public class VEItems {
             enrichment = 1f;
             cost = 5000;
             radioactivity = 5f;
+            databaseTag = "processed-item";
         }};
         
         // HEU-235铀燃料棒 - 亮绿色
@@ -69,6 +74,7 @@ public class VEItems {
             enrichment = 0.95f;
             cost = 3000;
             radioactivity = 3f;
+            databaseTag = "processed-item";
         }};
         // 迪伽马燃料棒
         dgammaFuel = new RBMKRodItem("dgamma-source", Color.valueOf("C70000FF")){{
@@ -81,6 +87,7 @@ public class VEItems {
             enrichment = 1f;
             cost = 5000;
             radioactivity = 5f;
+            databaseTag = "processed-item";
         }};
     }
 }
