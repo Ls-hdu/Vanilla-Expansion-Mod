@@ -37,7 +37,7 @@
   "deathExplosionEffect": "none",
   "hidden": true,
   "engineColor": "f25555",
-  "immunities": [ "frozen" ],
+  "immunities": [ "frozen","blown","freezing" ],
   "weapons": [
      {
       "type": "BuildWeapon",

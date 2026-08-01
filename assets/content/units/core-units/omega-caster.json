@@ -29,7 +29,7 @@
   "lightColor": "f25555",
   "pickupUnits": true,
   "targetable": false,
-  "immunities": [ "frozen","blown" ],
+  "immunities": [ "frozen","blown","freezing" ],
   "hidden": true,
   "outlines": false,
   "drawBody": true,
