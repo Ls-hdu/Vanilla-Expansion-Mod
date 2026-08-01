@@ -1,0 +1,23 @@
+{
+  //"type": "PowerNode",
+  "requirements": [ "silver/10","quartz/12","phase-fabric/5" ],
+  "category": "power",
+  "laserRange": 8,
+  "maxNodes": 20,
+  "research": {
+    "parent": "spot-solar-pad",
+    "objectives": [
+      "battery-node"
+    ]
+  },
+  "researchCostMultiplier": 0.1,
+  "consumes": {
+    "powerBuffered": 1000
+  },
+  "consumesPower": true,
+  "outputsPower": true,
+  "shownPlanets": [ "maress","thavina" ],
+  "laserColor2": "fb9567",
+  "enableDrawStatus": false,
+  "drawTeamOverlay": false
+}

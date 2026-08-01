@@ -1,0 +1,33 @@
+{
+  //"type": "ItemBridge",
+  "requirements": [ "phase-fabric/10","lead/15","silicide/10" ],
+  "category": "distribution",
+  "health": 500,
+  "armor": 24,
+  "range": 10,
+  "transportTime": 1,
+  "itemCapacity": 50,
+  "fadeIn": false,
+  "moveArrows": false,
+  "arrowSpacing": 2,
+  "buildCostMultiplier": 3,
+  "research": {
+    "parent": "ferric-rail",
+    "objectives": [
+      {
+        "type": "OnSector",
+        "preset": "slate-guardpost"
+      }
+    ]
+  },
+  "bridgeWidth": 8,
+  "arrowPeriod": 1.6,
+  "arrowTimeScl": 3,
+  "researchCostMultiplier": 0.1,
+  "hasPower": false,
+  "crushDamageMultiplier": 0.05,
+  "squareSprite": false,
+  "flammabilityScale": 0,
+  "explosivenessScale": 1.5,
+  "shownPlanets": [ "serpulo","cyclant","maress","phoon","thavina" ]
+}
