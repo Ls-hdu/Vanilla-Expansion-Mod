@@ -578,7 +578,6 @@ public class MultiCrafter extends HeatCrafter {
                             t.table(h -> StatValues.number(rec.outputHeat, StatUnit.heatUnits).display(h)).padRight(8);
 
                         if (rec.randomResults != null) {
-                            t.row();
                             float sum = 0f;
                             for (ItemStack s : rec.randomResults) sum += s.amount;
                             for (ItemStack stack : rec.randomResults) {
@@ -587,15 +586,16 @@ public class MultiCrafter extends HeatCrafter {
                             }
                         }
                     }
+                    t.row();
+                    t.add("[lightgray]" + Core.bundle.get("stat.productiontime") + ":[] " + Strings.autoFixed(rec.craftTime / 60f, 3) + " " + Core.bundle.get("unit.seconds")).padTop(4);
+                    if (rec.inputHeat > 0)
+                        t.add("  [lightgray]最大效率:[] " + Strings.autoFixed(rec.maxEfficiency * 100f, 0) + "%");
                     if (rec.attribute != null) {
                         t.row();
                         Table affTable = new Table();
                         StatValues.blocks(rec.attribute, rec.floating, rec.boostScale * size * size, !rec.displayEfficiency).display(affTable);
                         t.add(affTable).padLeft(4);
                     }
-                    t.add("[lightgray]" + Core.bundle.get("stat.productiontime") + ":[] " + Strings.autoFixed(rec.craftTime / 60f, 3) + " " + Core.bundle.get("unit.seconds")).padTop(4);
-                    if (rec.inputHeat > 0)
-                        t.add("  [lightgray]最大效率:[] " + Strings.autoFixed(rec.maxEfficiency * 100f, 0) + "%");
                 }).growX().pad(5).row();
             }
         });
@@ -1518,8 +1518,12 @@ public class MultiCrafter extends HeatCrafter {
 
         public void dumpOutputs() {
             for (Item item : outputItemsSet) {
-                while (items.has(item) && dump(item)) {}
-                if (!items.has(item)) outputItemsSet.remove(item);
+                if(item != null) {
+                    while (items.has(item)) {
+                         dump(item);
+                    }
+                    if (!items.has(item)) outputItemsSet.remove(item);
+                }
             }
 
             Seq<Liquid> liquidsToDump = new Seq<>();

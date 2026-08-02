@@ -334,9 +334,8 @@ public class OmniBridge extends ItemBridge {
             Draw.reset();
         }
 
-        private void drawInput(Tile other, boolean isOutput){
+        private void drawInput(Tile other, boolean linked){
             if(!linkValid(tile, other, false)) return;
-            boolean linked = isOutput;
 
             Tmp.v2.trns(tile.angleTo(other), 2f);
             float tx = tile.drawx(), ty = tile.drawy();
@@ -363,7 +362,7 @@ public class OmniBridge extends ItemBridge {
             Lines.square(ox, oy, 2f, 45f);
             Draw.mixcol(color);
             Draw.color();
-            float angle = Angles.angle(tx, ty, ox, oy);
+            float angle = linked ? Angles.angle(tx, ty, ox, oy) : Angles.angle(tx, ty, ox, oy) + 180;
             Draw.rect(arrowRegion, x, y, angle);
             Draw.mixcol();
         }
