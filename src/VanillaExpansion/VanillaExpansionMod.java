@@ -19,9 +19,11 @@ public class VanillaExpansionMod extends Mod {
     public void init() {
         ContentOrderGuard.init();
 
-        // 替换输入处理器（仅客户端）
+        // 替换输入处理器（仅客户端，移动端除外）
         Events.on(EventType.ClientLoadEvent.class, e -> {
-            control.setInput(new VEInputHandler());
+            if(!Vars.mobile){
+                control.setInput(new VEInputHandler());
+            }
         });
 
         // 等待 UI 就绪
