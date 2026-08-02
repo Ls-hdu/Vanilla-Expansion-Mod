@@ -17,8 +17,6 @@ public class VanillaExpansionMod extends Mod {
     public static MultiCrafterPayloadFragment payloadFragment;
     @Override
     public void init() {
-        ContentOrderGuard.init();
-
         // 替换输入处理器（仅客户端）
         Events.on(EventType.ClientLoadEvent.class, e -> {
             control.setInput(new VEInputHandler());
