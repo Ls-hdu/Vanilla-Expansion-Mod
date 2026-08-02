@@ -1,5 +1,5 @@
 {
-  "type": "VanillaExpansion.MultiCrafter",
+  //"type": "VanillaExpansion.MultiCrafter",
   "requirements": [ "chromium/200","ferrum/100","catalyzon/50","silicon/150","silicide/100","graphite/50" ],
   "category": "crafting",
   "craftEffect": "none",
@@ -158,7 +158,7 @@
                     "ops": [
                       {
                         "op": "loop",
-                        "time": 480
+                        "time": 360
                       },
                       {
                         "op": "compress",
@@ -180,7 +180,7 @@
                     "ops": [
                       {
                         "op": "loop",
-                        "time": 480
+                        "time": 360
                       },
                       {
                         "op": "compress",
@@ -202,7 +202,7 @@
                     "ops": [
                       {
                         "op": "loop",
-                        "time": 480
+                        "time": 360
                       },
                       {
                         "op": "compress",
@@ -224,7 +224,7 @@
                     "ops": [
                       {
                         "op": "loop",
-                        "time": 480
+                        "time": 360
                       },
                       {
                         "op": "compress",
@@ -381,7 +381,7 @@
   "shownPlanets": [ "maress","thavina" ],
   "recipe": [
     {
-      "inputLiquids": [ "water/1.5" ],
+      "inputLiquids": [ "water/1.5" ],//1
       "inputItems": [ "ve-salt/18" ],
       "inputPower": 3,
       "outputLiquids": [ "hydrogen/0.9","ve-chlorine/0.9" ],
@@ -420,7 +420,7 @@
       }
     },
     {
-      "inputLiquids": [ "water/1.5" ],
+      "inputLiquids": [ "water/1.5" ],//2
       "inputPower": 3,
       "outputLiquids": [ "hydrogen/0.9" ],
       "craftTime": 60,
@@ -458,7 +458,7 @@
       }
     },
     {
-      "inputLiquids": [ "water/0.33333333" ],
+      "inputLiquids": [ "water/0.33333333" ],//3
       "inputItems": [ "ve-quartz/9" ],
       "inputPower": 5.5,
       "outputLiquids": [ "water/0.33333333" ],
@@ -498,7 +498,7 @@
       }
     },
     {
-      "inputLiquids": [ "ve-lava/0.26666667","water/0.5" ],
+      "inputLiquids": [ "ve-lava/0.26666667","water/0.5" ],//4
       "inputPower": 2,
       "outputLiquids": [ "water/0.5" ],
       "outputItems": [ "sand/8" ],

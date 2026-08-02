@@ -1,5 +1,7 @@
 package VanillaExpansion.content;
 
+import VanillaExpansion.MultiCrafter;
+import VanillaExpansion.expand.world.block.liquid.LiquidSorter;
 import mindustry.world.blocks.campaign.*;
 import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.heat.*;
@@ -140,20 +142,28 @@ public class VEJSBlocks {
         new GenericCrafter("surge-coagulator");
         new GenericCrafter("warper");
 
-        // group 11 火星工厂
+        // group 11 火星红尘系列
         new GenericCrafter("blast-furnace");
         new GenericCrafter("multi-furnace");
         new GenericCrafter("centrifuge-kiln");
         new GenericCrafter("reflector-thermolyzer");
+        new MultiCrafter("m-reduction-chamber");
+
+        // group 11.1 火星碳硅系列
         new GenericCrafter("magnetic-separator");
         new GenericCrafter("magnetic-separator-large");
+
+        // group 11.2 火星其他工厂
+        new MultiCrafter("config-melter");
         new GenericCrafter("catalyzon-workshop");
+        new MultiCrafter("m-upgraded-reaction-pool");
         new HeatCrafter("thermoplastic-compressor");
 
-        // group 11.1 火星热量
+        // group 11.3 火星热量
         new HeatConductor("heat-conduct-conductor");
         new HeatConductor("heat-conduct-conductor-small");
         new HeatConductor("heat-conduct-distributor");
+        new MultiCrafter("m-boiler");
         new HeatProducer("reactor-core");
 
         // group 12 瓜星工厂
@@ -254,6 +264,7 @@ public class VEJSBlocks {
         new PowerTurret("trap-electric");
         new PointDefenseTurret("warp-defender");
         new PowerTurret("spore-bomb");
+        new MultiCrafter("cargo-anchor");
         new PowerTurret("nuke");
 
         // group 18 核心
@@ -292,6 +303,7 @@ public class VEJSBlocks {
         new Conduit("isomorphic-conduit");
         new LiquidRouter("fluid-router");
         new LiquidJunction("fluid-junction");
+        new LiquidSorter("fluid-sorter");
         new LiquidBridge("isomorphic-bridge-conduit");
         new ArmoredConduit("pressure-conduit");
         new LiquidBridge("platform-bridge-conduit");
@@ -343,6 +355,7 @@ public class VEJSBlocks {
         new PowerNode("cluster-node");
         new SolarGenerator("spot-solar-pad");
         new ConsumeGenerator("blast-engine");
+        new MultiCrafter("heat-turbine-generator");
         new VariableReactor("thermal-reactor");
 
         // group 24 瓜星电力
