@@ -15,6 +15,8 @@
   "flyingLayer": 90,
   "drawBody": false,
   "drawCell": false,
+  "research": "light-refabricator",
+  "researchCostMultiplier": 0,
   "deathSound": "poop",
   "envDisabled": 0,
   "outlineColor": "2d2f39",
