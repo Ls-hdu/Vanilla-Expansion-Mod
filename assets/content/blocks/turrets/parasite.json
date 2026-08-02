@@ -22,7 +22,7 @@
       "hittable": true,
       "absorbable": true,
       "intervalBullet": {
-        "type": "LightningBasicBulletType",
+        "type": "LightningBulletType",
         "lightningLength": 8,
         "lightningLengthRand": 4,
         "damage": 23,
@@ -57,7 +57,7 @@
       "hittable": true,
       "absorbable": true,
       "intervalBullet": {
-        "type": "LightningBasicBulletType",
+        "type": "LightningBulletType",
         "lightningLength": 10,
         "lightningLengthRand": 5,
         "damage": 50,

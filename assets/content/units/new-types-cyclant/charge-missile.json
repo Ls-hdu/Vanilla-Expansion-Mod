@@ -27,6 +27,7 @@
   "deathSound": "none",
   "drawCell": true,
   "envDisabled": 0,
+  "targetGround": true,
   "immunities": [ "blown","burning","disarmed","combusting","melting","fusing","sapped","electrified" ],
   "weapons": [
     {

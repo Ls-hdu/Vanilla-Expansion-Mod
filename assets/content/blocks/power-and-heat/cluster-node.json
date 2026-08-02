@@ -4,6 +4,7 @@
   "category": "power",
   "laserRange": 8,
   "maxNodes": 20,
+  "health": 120,
   "research": {
     "parent": "spot-solar-pad",
     "objectives": [
